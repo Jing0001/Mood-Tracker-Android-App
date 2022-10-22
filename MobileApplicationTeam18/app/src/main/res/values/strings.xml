@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Mobile Application Team18</string>
+    <string name="team">Team 18</string>
+    <string name="members">Jing Feng | Lujie Wen | ShuYi Wang | Suisui Xia</string>
+    <string name="weather">Weather</string>
+    <string name="firebase">Realtime Database</string>
+    <string name="mood">Moody Mood Tracker</string>
+</resources>
