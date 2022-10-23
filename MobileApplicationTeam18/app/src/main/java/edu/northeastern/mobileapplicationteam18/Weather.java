@@ -9,6 +9,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,18 +38,27 @@ public class Weather extends AppCompatActivity {
         setContentView(R.layout.activity_weather);
         et = findViewById(R.id.et);
         tv = findViewById(R.id.tv);
+        Button getWeatherBtn = findViewById(R.id.get_weather_btn) ;
 
+        getWeatherBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                System.out.println("get weather________________");
+                getWeather(et);
+            }
+        });
     }
 
-    public void getweather(View v){
+    public void getWeather(View v){
         System.out.println("hhhhhhhhhhhhhh");
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl("https://api.openweathermap.org/data/2.5/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         WeatherApi myapi=retrofit.create(WeatherApi.class);
-        Call<WeatherExample> examplecall=myapi.getweather(et.getText().toString().trim(),apikey);
-        examplecall.enqueue(new Callback<WeatherExample>() {
+        Call<WeatherExample> exampleCall=myapi.getWeather(et.getText().toString().trim(),apikey);
+        System.out.println("et.getText().toString().trim()________" + et.getText().toString().trim());
+        exampleCall.enqueue(new Callback<WeatherExample>() {
             @Override
             public void onResponse(Call<WeatherExample> call, Response<WeatherExample> response) {
                 if(response.code()==404){
@@ -58,8 +68,8 @@ public class Weather extends AppCompatActivity {
                     Toast.makeText(Weather.this,response.code()+" ",Toast.LENGTH_LONG).show();
                     return;
                 }
-                WeatherExample mydata=response.body();
-                WeatherDetails main=mydata.getWeatherDetails();
+                WeatherExample myData=response.body();
+                WeatherDetails main=myData.getWeatherDetails();
                 Double temp=main.getTemp();
                 Integer temperature=(int)(temp-273.15);
                 tv.setText(String.valueOf(temperature)+"C");
