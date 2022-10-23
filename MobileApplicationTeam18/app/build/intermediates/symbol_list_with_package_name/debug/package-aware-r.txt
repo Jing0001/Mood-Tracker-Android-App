@@ -2520,6 +2520,7 @@ id BOTTOM_END
 id BOTTOM_START
 id CTRL
 id FUNCTION
+id LoadingCompleteTV
 id META
 id NO_DEBUG
 id SHIFT
@@ -2861,6 +2862,7 @@ id position
 id postLayout
 id progress_circular
 id progress_horizontal
+id progressbar
 id radio
 id ratio
 id rectangles

@@ -11,11 +11,13 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_launcher_team18_background
 drawable ic_launcher_team18_foreground
+id LoadingCompleteTV
 id database
 id et
 id get_weather_btn
 id members
 id moodTracker
+id progressbar
 id team18
 id tv
 id weather
