@@ -30,9 +30,16 @@ mipmap ic_launcher_round
 mipmap ic_launcher_team18
 mipmap ic_launcher_team18_round
 string app_name
+string default_web_client_id
 string firebase
+string gcm_defaultSenderId
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string members
 string mood
+string project_id
 string team
 string weather
 style Theme.MobileApplicationTeam18
