@@ -5,4 +5,19 @@
     <string name="weather">Weather</string>
     <string name="firebase">Realtime Database</string>
     <string name="mood">Moody Mood Tracker</string>
+    <string name="user_name">Enter User Name:</string>
+    <string name="login_button">Login</string>
+    <string name="user_name_string">I am</string>
+    <string name="received_history_string">Received Emoji</string>
+    <string name="count_sent_string">Total Sent:</string>
+    <string name="from_user_string">Sender</string>
+    <string name="send_time_string">Time sent:</string>
+    <string name="Emojis_string">Emojis</string>
+    <string name="channel_name">Team18_A8</string>
+    <string name="channel_description">Team18</string>
+    <string name="channel_id">Team18</string>
+    <string name="sendButton">Send Emoji</string>
+    <string name="send_emoji_to">Send emoji To</string>
+
+
 </resources>
