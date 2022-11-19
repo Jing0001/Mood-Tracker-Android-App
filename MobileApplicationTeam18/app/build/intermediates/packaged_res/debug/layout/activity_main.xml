@@ -6,78 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/team18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="28dp"
-        android:text="@string/team"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/members"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/members"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/members"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/weather"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/team18" />
-
-    <Button
-        android:id="@+id/weather"
-        android:layout_width="215dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/weather"
-        app:layout_constraintBottom_toTopOf="@+id/database"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/members" />
 
     <Button
         android:id="@+id/database"
         android:layout_width="215dp"
         android:layout_height="50dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="5dp"
         android:text="@string/firebase"
         app:layout_constraintBottom_toTopOf="@+id/moodTracker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weather"
-        app:layout_constraintVertical_bias="0.46" />
+        app:layout_constraintTop_toBottomOf="@+id/weather" />
+
+    <Button
+        android:id="@+id/about"
+        android:layout_width="215dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="5dp"
+        android:text="ABOUT"
+        app:layout_constraintBottom_toTopOf="@+id/weather"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/moodTracker"
         android:layout_width="215dp"
         android:layout_height="50dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="200dp"
         android:text="@string/mood"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/database"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/database" />
+
+    <Button
+        android:id="@+id/weather"
+        android:layout_width="215dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/weather"
+        app:layout_constraintBottom_toTopOf="@+id/database"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/about" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
