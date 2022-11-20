@@ -44,19 +44,19 @@ public class FLogin extends AppCompatActivity {
                 final String passwordTxt = password.getText().toString();
                 if(nameTxt.isEmpty() || passwordTxt.isEmpty()){
                     // Incorrect
-                    Toast.makeText(FLogin.this,"LOGIN FAILED",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FLogin.this,"Please Fill All Fields",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     databaseReference.child(("FUser")).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            // check if email is exist in firebase database
+                            // check if username is exist in firebase database
                             if (snapshot.hasChild(nameTxt)){
-                                // email exits
+                                // username exits
                                 final String getPassword = snapshot.child(nameTxt).child("password").getValue(String.class);
                                 if (getPassword.equals(passwordTxt)){
-                                    Toast.makeText(FLogin.this,"Successfully Logged In",Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(FLogin.this, MainActivity.class));
+                                    Toast.makeText(FLogin.this,"Logged In Successfully",Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(FLogin.this, FMoods.class));
                                     finish();
                                 }
                                 else{
@@ -64,7 +64,7 @@ public class FLogin extends AppCompatActivity {
                                 }
                             }
                             else{
-                                Toast.makeText(FLogin.this,"Wrong Password",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(FLogin.this,"User Doesn't Exist",Toast.LENGTH_SHORT).show();
                             }
                         }
 

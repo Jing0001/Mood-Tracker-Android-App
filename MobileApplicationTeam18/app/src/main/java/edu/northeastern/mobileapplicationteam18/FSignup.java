@@ -3,6 +3,7 @@ package edu.northeastern.mobileapplicationteam18;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -57,13 +58,13 @@ public class FSignup extends AppCompatActivity {
 
                 // check if user fill all the fields before sending data to firebase
                 if (nameTxt.isEmpty() || emailTxt.isEmpty() || passwordTxt.isEmpty() || repasswordTxt.isEmpty()) {
-                    Toast.makeText(FSignup.this,"Please fill all fields",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FSignup.this,"Please Fill All Fields",Toast.LENGTH_SHORT).show();
                 }
 
                 // check if passwords are matching with each other
                 // if not matching with each other, then show a toast message
                 else if (!passwordTxt.equals(repasswordTxt)){
-                    Toast.makeText(FSignup.this,"Passwords are not matching",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FSignup.this,"Passwords Do Not Match",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     System.out.println("_BBB______------------------------------");
@@ -85,7 +86,8 @@ public class FSignup extends AppCompatActivity {
                                 databaseReference.child("FUser").child(nameTxt).child("name").setValue(nameTxt);
                                 databaseReference.child("FUser").child(nameTxt).child("password").setValue(passwordTxt);
 
-                                Toast.makeText(FSignup.this, "User registered succesfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(FSignup.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(FSignup.this, FMoods.class));
                                 finish();
                             }
                         }

@@ -8,21 +8,35 @@
 
     <TextView
         android:id="@+id/welcome"
-        android:layout_width="244dp"
-        android:layout_height="50dp"
+        android:layout_width="271dp"
+        android:layout_height="51dp"
         android:layout_marginTop="91dp"
         android:layout_marginBottom="18dp"
         android:fontFamily="@font/akaya_telivigala"
         android:text="@string/welcome"
         android:textColor="@color/green"
-        android:textSize="30sp"
+        android:textSize="35sp"
         android:textStyle="bold"
-
         app:layout_constraintBottom_toTopOf="@+id/moody"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/solver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/akaya_telivigala"
+        android:text="Your Personal Mood Solver"
+        android:textColor="@color/green"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/moody"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/log"
@@ -35,8 +49,7 @@
         android:background="@color/blue_200"
         android:backgroundTint="@color/blue_200"
         android:text="Log In"
-
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/sign"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.382"
@@ -51,7 +64,7 @@
         android:layout_marginTop="11dp"
         android:layout_marginBottom="79dp"
         android:text="Sign Up"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -78,8 +91,7 @@
         android:layout_marginTop="7dp"
         android:layout_marginBottom="49dp"
         android:text="play"
-
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/log"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
