@@ -48,5 +48,14 @@ public class Mood extends AppCompatActivity {
             }
         });
 
+        Button login = (Button) findViewById(R.id.log);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Mood.this, FLogin.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
