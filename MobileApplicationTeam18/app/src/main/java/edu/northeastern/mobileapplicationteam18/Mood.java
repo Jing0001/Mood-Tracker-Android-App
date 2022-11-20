@@ -2,6 +2,7 @@ package edu.northeastern.mobileapplicationteam18;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,5 +38,15 @@ public class Mood extends AppCompatActivity {
                 moodyVideo.start();
             }
         });
+
+        Button signup = (Button) findViewById(R.id.sign);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Mood.this, FSignup.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
