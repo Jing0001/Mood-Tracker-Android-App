@@ -1,5 +1,6 @@
 package edu.northeastern.mobileapplicationteam18;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -8,23 +9,97 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class FSignup extends AppCompatActivity {
+
+    // create object of DatabaseRef class
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+//    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://team18-4d12d-default-rtdb.firebaseio.com/");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fsignup);
+
+//        System.out.println("_ccc______------------------------------");
+//        System.out.println(databaseReference);
+//        System.out.println(databaseReference.child("users").child("51c873632459821d").child("username").setValue("user2"));
+//        databaseReference.child("FUser").child("abc").child("email").setValue("def");
+//
+
         EditText username = (EditText) findViewById(R.id.username);
-
+        EditText email = (EditText) findViewById(R.id.email);
+        EditText password = (EditText) findViewById(R.id.password);
+        EditText repassword = (EditText) findViewById(R.id.repassword);
         MaterialButton regbtn = (MaterialButton) findViewById(R.id.signupbtn);
+        MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
 
+//        loginbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
         regbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username1 = username.getText().toString();
-                Toast.makeText(FSignup.this,"Username is"+username1,Toast.LENGTH_SHORT).show();
+
+                // get data from EditTexts into String variables
+                String nameTxt = username.getText().toString();
+                String emailTxt = email.getText().toString();
+                String passwordTxt = password.getText().toString();
+                String repasswordTxt = repassword.getText().toString();
+
+                // check if user fill all the fields before sending data to firebase
+                if (nameTxt.isEmpty() || emailTxt.isEmpty() || passwordTxt.isEmpty() || repasswordTxt.isEmpty()) {
+                    Toast.makeText(FSignup.this,"Please fill all fields",Toast.LENGTH_SHORT).show();
+                }
+
+                // check if passwords are matching with each other
+                // if not matching with each other, then show a toast message
+                else if (!passwordTxt.equals(repasswordTxt)){
+                    Toast.makeText(FSignup.this,"Passwords are not matching",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    System.out.println("_BBB______------------------------------");
+                    System.out.println(databaseReference);
+                    System.out.println(databaseReference.child("users").getKey());
+                    databaseReference.child("FUser").child("abc").child("email").setValue("def");
+                    databaseReference.child("FUser").addListenerForSingleValueEvent(new ValueEventListener() {
+
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            // check if email is not registered before
+                            if (snapshot.hasChild(nameTxt)){
+                                Toast.makeText(FSignup.this, "Username is already registered", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                // sending data to firebase Realtime Database
+                                //  using email as unique identity of every user
+                                databaseReference.child("FUser").child(nameTxt).child("email").setValue(emailTxt);
+                                databaseReference.child("FUser").child(nameTxt).child("name").setValue(nameTxt);
+                                databaseReference.child("FUser").child(nameTxt).child("password").setValue(passwordTxt);
+
+                                Toast.makeText(FSignup.this, "User registered succesfully", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                }
             }
         });
     }
+
+
 }

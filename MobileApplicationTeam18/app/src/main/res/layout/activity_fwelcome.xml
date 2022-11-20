@@ -8,11 +8,16 @@
 
     <TextView
         android:id="@+id/welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="244dp"
+        android:layout_height="50dp"
         android:layout_marginTop="91dp"
         android:layout_marginBottom="18dp"
+        android:fontFamily="@font/akaya_telivigala"
         android:text="@string/welcome"
+        android:textColor="@color/green"
+        android:textSize="30sp"
+        android:textStyle="bold"
+
         app:layout_constraintBottom_toTopOf="@+id/moody"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -22,27 +27,27 @@
     <Button
         android:id="@+id/log"
         style="@style/TextAppearance.AppCompat.Widget.Button"
-        android:layout_width="201dp"
-        android:layout_height="52dp"
+        android:layout_width="200dp"
+        android:layout_height="53dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="42dp"
         android:layout_marginBottom="35dp"
-
         android:background="@color/blue_200"
         android:backgroundTint="@color/blue_200"
         android:text="Log In"
+
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/sign"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintHorizontal_bias="0.382"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/play" />
 
     <Button
         android:id="@+id/sign"
         style="@style/TextAppearance.AppCompat.Widget.Button"
-        android:layout_width="198dp"
-        android:layout_height="59dp"
+        android:layout_width="200dp"
+        android:layout_height="62dp"
         android:layout_marginTop="11dp"
         android:layout_marginBottom="79dp"
         android:text="Sign Up"
@@ -73,6 +78,7 @@
         android:layout_marginTop="7dp"
         android:layout_marginBottom="49dp"
         android:text="play"
+
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/log"
         app:layout_constraintEnd_toEndOf="parent"
