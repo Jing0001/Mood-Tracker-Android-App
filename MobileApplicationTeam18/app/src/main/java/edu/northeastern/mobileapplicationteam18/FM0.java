@@ -19,7 +19,7 @@ public class FM0 extends AppCompatActivity {
         getlist0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FM0.this, MainActivity.class);
+                Intent intent = new Intent(FM0.this, FAct0.class);
                 startActivity(intent);
             }
         });
