@@ -29,21 +29,40 @@
         android:theme="@style/Theme.MobileApplicationTeam18"
         tools:targetApi="31">
         <activity
+            android:name=".FM0"
+            android:exported="false" />
+        <activity
             android:name=".FM1"
-            android:exported="false"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
+        <activity
+            android:name=".FM2"
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
+        <activity
+            android:name=".FM3"
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
+        <activity
+            android:name=".FM4"
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
+        <activity
+            android:name=".FM5"
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
         <activity
             android:name=".FMoods"
-            android:exported="false"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
         <activity
             android:name=".FLogin"
-            android:exported="false"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
         <activity
             android:name=".FSignup"
-            android:exported="false"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
 
         <service
             android:name=".Firebase"
@@ -63,8 +82,8 @@
             android:exported="false" />
         <activity
             android:name=".Mood"
-            android:exported="false"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
         <activity
             android:name=".About"
             android:exported="false" />
