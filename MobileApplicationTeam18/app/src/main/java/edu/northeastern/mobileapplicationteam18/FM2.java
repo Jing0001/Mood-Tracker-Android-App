@@ -16,10 +16,18 @@ public class FM2 extends AppCompatActivity {
         setContentView(R.layout.activity_fm2);
 
         Button getlist2 = (Button) findViewById(R.id.list2);
+        Button addlist2 = (Button) findViewById(R.id.addlist2);
         getlist2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FM2.this, MainActivity.class);
+                Intent intent = new Intent(FM2.this, FImage2.class);
+                startActivity(intent);
+            }
+        });
+        addlist2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FM2.this, FUpload2.class);
                 startActivity(intent);
             }
         });

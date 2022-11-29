@@ -16,10 +16,18 @@ public class FM5 extends AppCompatActivity {
         setContentView(R.layout.activity_fm5);
 
         Button getlist5 = (Button) findViewById(R.id.list5);
+        Button addlist5 = (Button) findViewById(R.id.addlist5);
         getlist5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FM5.this, MainActivity.class);
+                Intent intent = new Intent(FM5.this, FImage5.class);
+                startActivity(intent);
+            }
+        });
+        addlist5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FM5.this, FUpload5.class);
                 startActivity(intent);
             }
         });
