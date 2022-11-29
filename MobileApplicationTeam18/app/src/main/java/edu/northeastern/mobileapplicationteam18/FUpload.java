@@ -135,7 +135,7 @@ public class FUpload extends AppCompatActivity {
 
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
-                            Toast.makeText(FUpload.this, "Teacher  Upload successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(FUpload.this, "Upload successful. Press back to see updated list.", Toast.LENGTH_LONG).show();
 //                            FActivity upload = new FActivity(nameEditText.getText().toString().trim(),
 //                                    taskSnapshot.getMetadata().getReference().getDownloadUrl().toString(),
 //                                    descriptionEditText.getText().toString());
@@ -147,7 +147,7 @@ public class FUpload extends AppCompatActivity {
 //                            mDatabaseRef.child(uploadId).setValue(upload);
 
                             uploadProgressBar.setVisibility(View.INVISIBLE);
-                            openImagesActivity();
+//                            openImagesActivity();
 
                         }
                     })
