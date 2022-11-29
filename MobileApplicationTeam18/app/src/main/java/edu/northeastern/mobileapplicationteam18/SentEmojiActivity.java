@@ -153,7 +153,7 @@ public class SentEmojiActivity extends AppCompatActivity {
         emojiClicked.put(v, false);
     }
 
-// cited from `https://developer.android.com/develop/ui/views/notifications/channels`
+    // cited from `https://developer.android.com/develop/ui/views/notifications/channels`
     public void createNotificationChannel() {
         CharSequence name = getString(R.string.channel_name);
         String description = getString(R.string.channel_description);
@@ -180,7 +180,23 @@ public class SentEmojiActivity extends AppCompatActivity {
         }
         Emoji emoji = new Emoji(selectedEmojiId, userName, selectedUsername, timeNow());
 
-        userDB.child("emojis").child(emoji.getKey()).setValue(emoji);
+        userDB.child("emojis").child(emoji.getKey()).setValue(emoji).addOnSuccessListener(
+                (task) -> {
+                    Context context_success = getApplicationContext();
+                    CharSequence text_success = "Sticker successfully send to " + selectedUsername;
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context_success, text_success, duration);
+                    toast.show();
+
+                    ImageView imageViewById = getImageViewById(selectedEmojiId);
+                    if (imageViewById == null) {
+//                        Log.e("UI", "ID not supported in this app version...");
+                        return;
+                    }
+                    emojiSentCount.merge(getImageViewById(selectedEmojiId), 1, Integer::sum);
+                    displayCount();
+                });
+//        userDB.child("emojis").child(emoji.getKey()).setValue(emoji);
         userDB.child("users").child(userNameUserIdPair.get(selectedUsername)).get().addOnCompleteListener((task) -> {
             HashMap tempMap = (HashMap) task.getResult().getValue();
             String token = tempMap.get("token").toString();
@@ -209,7 +225,7 @@ public class SentEmojiActivity extends AppCompatActivity {
         final String response = fcmHttpConnection(SERVER_KEY, jPayload);
     }
 
-//cited from `https://firebase.google.com/docs/cloud-messaging/http-server-ref`
+    //cited from `https://firebase.google.com/docs/cloud-messaging/http-server-ref`
     private static String fcmHttpConnection(String serverToken, JSONObject jsonObject) {
         try {
             URL url = new URL("https://fcm.googleapis.com/fcm/send");
@@ -228,7 +244,7 @@ public class SentEmojiActivity extends AppCompatActivity {
         }
     }
 
-// cited from `https://www.baeldung.com/convert-input-stream-to-string`
+    // cited from `https://www.baeldung.com/convert-input-stream-to-string`
     private static String convertStreamToString(InputStream inputStream) {
         StringBuilder stringBuilder = new StringBuilder();
         try {

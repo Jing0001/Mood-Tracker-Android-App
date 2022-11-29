@@ -45,6 +45,15 @@ public class Firebase extends FirebaseMessagingService {
             }
             userName = Objects.requireNonNull(userMap.get("username")).toString();
         });
+//            if (task.isSuccessful()) {
+//                HashMap userMap = (HashMap) task.getResult().getValue();
+//                if (userMap != null)  {
+//                    userName = Objects.requireNonNull(userMap.get("username")).toString();
+//                }
+//                return;
+//            }
+//
+//        });
         emojiDrawable.put(1, R.drawable.angry);
         emojiDrawable.put(2, R.drawable.confused);
         emojiDrawable.put(3, R.drawable.heartbreak);

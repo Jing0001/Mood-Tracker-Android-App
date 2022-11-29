@@ -28,12 +28,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileApplicationTeam18"
         tools:targetApi="31">
+
         <activity
-            android:name=".FMenu"
+            android:name=".FImage"
             android:exported="false" />
-        <activity
-            android:name=".FAct0"
-            android:exported="false" />
+
         <activity
             android:name=".FM0"
             android:exported="false" />
@@ -67,6 +66,10 @@
             android:exported="false" />
         <activity
             android:name=".FSignup"
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
+        <activity
+            android:name=".FUpload"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
 

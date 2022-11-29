@@ -2,13 +2,23 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:title="List"
+        android:icon="@drawable/ic_baseline_description_24"
+        android:id="@+id/list"
+        android:checkable="true" />
+
     <item android:title="Search"
         android:icon="@drawable/ic_baseline_search_24"
-        android:id="@id/home"/>
+        android:id="@+id/search"
+        android:checkable="true" />
+
     <item android:title="Send"
         android:icon="@drawable/ic_baseline_send_24"
-        android:id="@+id/send"/>
+        android:id="@+id/send"
+        android:checkable="true"/>
+
     <item android:title="Receive"
         android:icon="@drawable/ic_baseline_chat_24"
-        android:id="@+id/receive"/>
+        android:id="@+id/receive"
+        android:checkable="true"/>
 </menu>
