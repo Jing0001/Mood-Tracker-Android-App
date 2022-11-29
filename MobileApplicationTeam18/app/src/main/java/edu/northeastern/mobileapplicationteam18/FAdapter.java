@@ -41,7 +41,12 @@ import java.util.List;
             FActivity currentTeacher = factivity.get(position);
             holder.nameTextView.setText(currentTeacher.getName());
             holder.descriptionTextView.setText(currentTeacher.getDescription());
-            holder.dateTextView.setText(getDateToday());
+//            long date = System.currentTimeMillis();
+//
+//            SimpleDateFormat sdf = new SimpleDateFormat("MMM MM dd, yyyy h:mm a");
+//            String dateString = sdf.format(date);
+//            holder.dateTextView.setText(dateString);
+//            holder.dateTextView.setText(getDateToday());
             Picasso.with(mContext)
                     .load(currentTeacher.getImageUrl())
                     .placeholder(R.mipmap.ic_launcher)

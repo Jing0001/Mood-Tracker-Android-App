@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.TextView;
@@ -30,6 +31,8 @@ public class FMoods extends AppCompatActivity {
 
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
 
+        Button calendar = (Button) findViewById(R.id.calendar);
+        Button memory = (Button) findViewById(R.id.memory);
         CardView cardView0 = (CardView) mainGrid.getChildAt(0);
         CardView cardView1 = (CardView) mainGrid.getChildAt(1);
         CardView cardView2 = (CardView) mainGrid.getChildAt(2);
@@ -37,6 +40,13 @@ public class FMoods extends AppCompatActivity {
         CardView cardView4 = (CardView) mainGrid.getChildAt(4);
         CardView cardView5 = (CardView) mainGrid.getChildAt(5);
         CardView cardView6 = (CardView) mainGrid.getChildAt(6);
+        memory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FMoods.this, FMemory.class);
+                startActivity(intent);
+            }
+        });
 
         // 0
         cardView0.setOnClickListener(new View.OnClickListener() {

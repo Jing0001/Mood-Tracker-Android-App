@@ -249,7 +249,18 @@
 
         </GridLayout>
 
-<!--        <TextView-->
+        <Button
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calendar" />
+
+        <Button
+            android:id="@+id/memory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Memory" />
+        <!--        <TextView-->
 <!--            android:id="@+id/choose"-->
 <!--            android:layout_width="380dp"-->
 <!--            android:layout_height="98dp"-->

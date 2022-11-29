@@ -29,6 +29,12 @@
         android:theme="@style/Theme.MobileApplicationTeam18"
         tools:targetApi="31">
         <activity
+            android:name=".FMemoryimage"
+            android:exported="false" />
+        <activity
+            android:name=".FMemory"
+            android:exported="false" />
+        <activity
             android:name=".FUpload5"
             android:exported="false" />
         <activity
