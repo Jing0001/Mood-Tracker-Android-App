@@ -31,15 +31,15 @@
 
             <TextView
                 android:id="@+id/feel"
-                android:layout_width="wrap_content"
-                android:layout_height="65dp"
+                android:layout_width="352dp"
+                android:layout_height="52dp"
                 android:layout_below="@+id/imageView"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="259dp"
-                android:layout_marginEnd="6dp"
+                android:layout_marginStart="43dp"
+                android:layout_marginTop="248dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="44dp"
                 android:text="How do you feel today?"
                 android:textColor="@android:color/white"
@@ -85,7 +85,7 @@
                         android:layout_width="148dp"
                         android:layout_height="204dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/happiness" />
+                        android:src="@drawable/happiness1" />
 
                 </LinearLayout>
 
@@ -115,7 +115,7 @@
                         android:layout_width="148dp"
                         android:layout_height="204dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/anger" />
+                        android:src="@drawable/anger1" />
 
                 </LinearLayout>
 
@@ -148,7 +148,7 @@
                         android:layout_width="148dp"
                         android:layout_height="204dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/sullenness" />
+                        android:src="@drawable/sadness" />
 
                 </LinearLayout>
 
@@ -178,7 +178,7 @@
                         android:layout_width="148dp"
                         android:layout_height="204dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/hysteria" />
+                        android:src="@drawable/hysteria1" />
 
                 </LinearLayout>
 
@@ -208,7 +208,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/embarrassment"
+                        android:src="@drawable/embarrassment1"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="148dp"
                         android:layout_height="204dp" />
@@ -238,7 +238,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/fatigue"
+                        android:src="@drawable/fatigue1"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="148dp"
                         android:layout_height="204dp" />
@@ -252,14 +252,16 @@
         <Button
             android:id="@+id/calendar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Calendar" />
+            android:layout_height="60dp"
+            android:text="Activity Tracker"
+            android:textSize="20dp"/>
 
         <Button
             android:id="@+id/memory"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Memory" />
+            android:layout_height="60dp"
+            android:text="Share Moments"
+            android:textSize="20dp"/>
         <!--        <TextView-->
 <!--            android:id="@+id/choose"-->
 <!--            android:layout_width="380dp"-->
