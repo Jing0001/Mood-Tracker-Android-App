@@ -40,6 +40,14 @@ public class FMoods extends AppCompatActivity {
         CardView cardView4 = (CardView) mainGrid.getChildAt(4);
         CardView cardView5 = (CardView) mainGrid.getChildAt(5);
         CardView cardView6 = (CardView) mainGrid.getChildAt(6);
+        calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FMoods.this, FCalendar.class);
+                startActivity(intent);
+            }
+        });
+
         memory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
