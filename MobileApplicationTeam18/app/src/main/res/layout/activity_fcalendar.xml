@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context=".FCalendar">
 
     <Button
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Weekly"
-        android:textColor="@color/blue"
+        android:textColor="@color/black"
         android:background="@null"
         android:textStyle="bold"
         android:onClick="weeklyAction"
@@ -32,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/back"
-            android:textColor="@color/blue"
+            android:textColor="@color/black"
             android:background="@null"
             android:textStyle="bold"
             android:onClick="previousMonthAction"
@@ -53,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/forward"
-            android:textColor="@color/blue"
+            android:textColor="@color/black"
             android:background="@null"
             android:textStyle="bold"
             android:onClick="nextMonthAction"

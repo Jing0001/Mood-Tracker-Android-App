@@ -91,4 +91,8 @@ public class FCalendarWeekView extends AppCompatActivity implements FCalendarAda
     {
         startActivity(new Intent(this, FCalendarEventEdit.class));
     }
+
+    public void dailyAction(View view) {
+        startActivity(new Intent(this, FDailycalendar.class));
+    }
 }
