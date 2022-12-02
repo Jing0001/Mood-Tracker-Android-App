@@ -1,14 +1,21 @@
 package edu.northeastern.mobileapplicationteam18;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,8 +47,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-public class FSendEmoji extends AppCompatActivity {
+public class FSendEmoji extends AppCompatActivity implements LocationListener {
     private DatabaseReference userDB;
+    private static final int PERMISSIONS_FINE_LOCATION = 99;
     private ImageView emojiAngry, emojiConfused, emojiHeartbreak, emojiSad, emojiSleepy, emojiNaughty;
     private TextView emojiAngryTV, emojiConfusedTV, emojiHeartbreakTV, emojiSadTV, emojiSleepyTV, emojiNaughtyTV;
     private String userName;
@@ -54,6 +62,11 @@ public class FSendEmoji extends AppCompatActivity {
     private Map<String, String> userIdUserNamePair = new HashMap<>();
     public static final String DATE = "yyyy-MM-dd hh:mm:ss";
     private static String SERVER_KEY;
+    private TextView la;
+    private TextView lo;
+    private TextView dis;
+    private Location startLocation;
+    private LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +87,10 @@ public class FSendEmoji extends AppCompatActivity {
         initializeAllEmoji();
         readDataFromDB();
         initializeSpinner();
-
+        la = (TextView) findViewById(R.id.txtLa);
+        lo = (TextView) findViewById(R.id.txtLo);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        getLocation();
         receive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,11 +133,9 @@ public class FSendEmoji extends AppCompatActivity {
     }
 
     private void initializeSpinner() {
-        System.out.println("bbbbbbb");
         userDB.child("FUser").get().addOnCompleteListener((task) -> {
             HashMap<String, HashMap<String, String>> myMap = (HashMap) task.getResult().getValue();
             List<String> userNames = new ArrayList<>();
-            System.out.println("aaaaaaaa"+myMap.keySet());
             for (String userId : myMap.keySet()) {
                 String anotherUserName = myMap.get(userId).get("name");
                 if (anotherUserName == null || anotherUserName.equals(userName)) {
@@ -360,5 +374,31 @@ public class FSendEmoji extends AppCompatActivity {
         emojiWithText.put(emojiSleepy, emojiSleepyTV);
         emojiWithText.put(emojiNaughty, emojiNaughtyTV);
     }
+    private void getLocation(){
+        if (ActivityCompat.checkSelfPermission(FSendEmoji.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, this);
+        }
+        else{
+            ActivityCompat.requestPermissions(FSendEmoji.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_FINE_LOCATION);
+        }
+    }
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        if (startLocation == null) {
+            startLocation = location;
+        }
+
+        double latitude = location.getLatitude();
+        double longitude = location.getLongitude();
+        la.setText("Latitude: " + String.valueOf(latitude));
+        lo.setText("Longitude: " + String.valueOf(longitude));
+    }
+
+    private double distance(Location location) {
+        float[] results = new float[3];
+        Location.distanceBetween(startLocation.getLatitude(), startLocation.getLongitude(), location.getLatitude(), location.getLongitude(), results);
+        return results[0];
+    }
+
 }
 

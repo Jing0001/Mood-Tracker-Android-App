@@ -7,8 +7,60 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".FSendEmoji">
+
+        <TextView
+            android:id="@+id/txtLa"
+            android:layout_width="57dp"
+            android:layout_height="38dp"
+            android:text="Latitude"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.019"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.104" />
+
+        <TextView
+            android:id="@+id/txtLo"
+            android:layout_width="69dp"
+            android:layout_height="38dp"
+            android:text="Longitude"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.02"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.161" />
+
+        <TextView
+            android:id="@+id/txtLa1"
+            android:layout_width="57dp"
+            android:layout_height="38dp"
+            android:text="Latitude"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.74"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.104" />
+
+        <TextView
+            android:id="@+id/txtLo1"
+            android:layout_width="69dp"
+            android:layout_height="38dp"
+            android:text="Longitude"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.766"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.161" />
 
         <TextView
             android:id="@+id/userName"
@@ -19,7 +71,8 @@
             app:layout_constraintBottom_toTopOf="@id/emojiAngry"
             app:layout_constraintEnd_toStartOf="@id/send_to"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.116" />
 
         <TextView
             android:id="@+id/send_to"
@@ -30,7 +83,21 @@
             app:layout_constraintBottom_toTopOf="@id/emojiConfused"
             app:layout_constraintEnd_toStartOf="@id/ffriend_spinner"
             app:layout_constraintStart_toEndOf="@id/userName"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.12" />
+
+        <TextView
+            android:id="@+id/vs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="496dp"
+            android:text="vs"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/sendButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.373"
+            app:layout_constraintStart_toEndOf="@+id/txtLa" />
 
         <Spinner
             android:id="@+id/ffriend_spinner"
@@ -44,7 +111,7 @@
             android:id="@+id/emojiAngry"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="148dp"
             android:src="@drawable/hi"
             app:layout_constraintEnd_toStartOf="@id/emojiConfused"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +121,7 @@
             android:id="@+id/emojiConfused"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="148dp"
             android:src="@drawable/bye"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/emojiAngry"
@@ -108,11 +175,11 @@
             android:id="@+id/sendButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="44dp"
             android:onClick="onSendButtonPressed"
             android:text="@string/sendButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.479"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emojiNaughtySentCountTV" />
 
@@ -120,11 +187,10 @@
             android:id="@+id/receivedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:onClick="onReceivedButtonPressed"
             android:text="@string/received_history_string"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sendButton" />
 
