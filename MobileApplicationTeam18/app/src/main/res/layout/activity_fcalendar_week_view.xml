@@ -16,7 +16,6 @@
         android:text="Daily"
         android:textColor="@color/black"
         android:background="@null"
-        android:textStyle="bold"
         android:onClick="dailyAction"
         android:textSize="20sp"/>
 
@@ -145,7 +144,6 @@
         android:text="New Activity"
         android:textColor="@color/black"
         android:background="@null"
-        android:textStyle="bold"
         android:onClick="newEventAction"
         android:layout_gravity="center"
         android:textSize="20sp"/>

@@ -16,7 +16,6 @@
         android:text="Weekly"
         android:textColor="@color/black"
         android:background="@null"
-        android:textStyle="bold"
         android:onClick="weeklyAction"
         android:textSize="20sp"/>
 

@@ -22,17 +22,21 @@ import java.util.Arrays;
 public class FMoods extends AppCompatActivity {
     GridLayout mainGrid;
     Integer count = 0;
-
+    String userName;
 //    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fmoods);
-
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            userName = extras.getString("user_name");
+        }
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
 
         Button calendar = (Button) findViewById(R.id.calendar);
         Button memory = (Button) findViewById(R.id.memory);
+        Button send = (Button) findViewById(R.id.fSend);
         CardView cardView0 = (CardView) mainGrid.getChildAt(0);
         CardView cardView1 = (CardView) mainGrid.getChildAt(1);
         CardView cardView2 = (CardView) mainGrid.getChildAt(2);
@@ -52,6 +56,15 @@ public class FMoods extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FMoods.this, FMemory.class);
+                startActivity(intent);
+            }
+        });
+
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FMoods.this, FSendEmoji.class);
+                intent.putExtra("user_name", userName);
                 startActivity(intent);
             }
         });

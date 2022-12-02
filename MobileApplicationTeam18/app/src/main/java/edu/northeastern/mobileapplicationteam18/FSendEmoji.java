@@ -10,8 +10,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -38,7 +40,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-public class SentEmojiActivity extends AppCompatActivity {
+public class FSendEmoji extends AppCompatActivity {
     private DatabaseReference userDB;
     private ImageView emojiAngry, emojiConfused, emojiHeartbreak, emojiSad, emojiSleepy, emojiNaughty;
     private TextView emojiAngryTV, emojiConfusedTV, emojiHeartbreakTV, emojiSadTV, emojiSleepyTV, emojiNaughtyTV;
@@ -61,9 +63,10 @@ public class SentEmojiActivity extends AppCompatActivity {
             userName = extras.getString("user_name");
         }
         SERVER_KEY = "key=" + getProperties(getApplicationContext()).getProperty("SERVER_KEY");
-        setContentView(R.layout.activity_send_emoji);
+        setContentView(R.layout.activity_fsend_emoji);
         createNotificationChannel();
-        friends = findViewById(R.id.friend_spinner);
+        Button receive = (Button) findViewById(R.id.receivedButton);
+        friends = findViewById(R.id.ffriend_spinner);
         userDB = FirebaseDatabase.getInstance().getReference();
         userNameTV = (TextView) findViewById(R.id.userName);
         userNameTV.setText("Hello, " + userName);
@@ -72,7 +75,16 @@ public class SentEmojiActivity extends AppCompatActivity {
         readDataFromDB();
         initializeSpinner();
 
+        receive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FSendEmoji.this, FReceiveEmoji.class);
+                intent.putExtra("user_name", userName);
+                startActivity(intent);
+            }
+        });
     }
+
 
     public static Properties getProperties(Context context)  {
         Properties properties = new Properties();
@@ -85,13 +97,6 @@ public class SentEmojiActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return properties;
-    }
-
-    private void displayCount() {
-        for (ImageView imageView : emojiWithText.keySet()) {
-            TextView textView = emojiWithText.get(imageView);
-            textView.setText("Sent Counting: " + emojiSentCount.get(imageView));
-        }
     }
 
     private void readDataFromDB() {
@@ -108,16 +113,17 @@ public class SentEmojiActivity extends AppCompatActivity {
                     }
                 }
             }
-            displayCount();
         });
     }
 
     private void initializeSpinner() {
-        userDB.child("users").get().addOnCompleteListener((task) -> {
+        System.out.println("bbbbbbb");
+        userDB.child("FUser").get().addOnCompleteListener((task) -> {
             HashMap<String, HashMap<String, String>> myMap = (HashMap) task.getResult().getValue();
             List<String> userNames = new ArrayList<>();
+            System.out.println("aaaaaaaa"+myMap.keySet());
             for (String userId : myMap.keySet()) {
-                String anotherUserName = myMap.get(userId).get("username");
+                String anotherUserName = myMap.get(userId).get("name");
                 if (anotherUserName == null || anotherUserName.equals(userName)) {
                     continue;
                 }
@@ -194,13 +200,13 @@ public class SentEmojiActivity extends AppCompatActivity {
                         return;
                     }
                     emojiSentCount.merge(getImageViewById(selectedEmojiId), 1, Integer::sum);
-                    displayCount();
+
                 });
 //        userDB.child("emojis").child(emoji.getKey()).setValue(emoji);
-        userDB.child("users").child(userNameUserIdPair.get(selectedUsername)).get().addOnCompleteListener((task) -> {
-            HashMap tempMap = (HashMap) task.getResult().getValue();
-            String token = tempMap.get("token").toString();
-            new Thread(() -> sendEmojiNotification(token, emoji)).start();
+        userDB.child("FUser").child(userNameUserIdPair.get(selectedUsername)).get().addOnCompleteListener((task) -> {
+//            HashMap tempMap = (HashMap) task.getResult().getValue();
+//            String token = tempMap.get("token").toString();
+//            new Thread(() -> sendEmojiNotification(token, emoji)).start();
         });
         Toast.makeText(getApplicationContext(), "Send successfully", Toast.LENGTH_SHORT).show();
     }

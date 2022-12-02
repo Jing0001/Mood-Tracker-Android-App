@@ -3,8 +3,11 @@ package edu.northeastern.mobileapplicationteam18;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class FSignup extends AppCompatActivity {
 
@@ -55,6 +59,7 @@ public class FSignup extends AppCompatActivity {
                 String emailTxt = email.getText().toString();
                 String passwordTxt = password.getText().toString();
                 String repasswordTxt = repassword.getText().toString();
+                @SuppressLint("HardwareIds") String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
                 // check if user fill all the fields before sending data to firebase
                 if (nameTxt.isEmpty() || emailTxt.isEmpty() || passwordTxt.isEmpty() || repasswordTxt.isEmpty()) {
@@ -81,13 +86,27 @@ public class FSignup extends AppCompatActivity {
                             }
                             else{
                                 // sending data to firebase Realtime Database
-                                //  using email as unique identity of every user
                                 databaseReference.child("FUser").child(nameTxt).child("email").setValue(emailTxt);
                                 databaseReference.child("FUser").child(nameTxt).child("name").setValue(nameTxt);
                                 databaseReference.child("FUser").child(nameTxt).child("password").setValue(passwordTxt);
+                                FirebaseMessaging.getInstance().getToken()
+                                        .addOnCompleteListener(task -> {
+                                            if (!task.isSuccessful()) {
+                                                Log.w("MainActivity", "onCreate Fetching FCM registration token failed", task.getException());
+                                                return;
+                                            }
+                                            String token = task.getResult();
+                                            databaseReference.child("FUser").child(nameTxt).child("token").setValue(token);
+                                            databaseReference.child("FUser").child(nameTxt).child("android_id").setValue(android_id);
+//                                            System.out.println("token from add for " + nameTxt +  ":" + token);
+//                                            User user = new User(nameTxt, android_id, token);
+//                                            databaseReference.child("FUsers").child(android_id).setValue(user);
+                                        });
 
                                 Toast.makeText(FSignup.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(FSignup.this, FMoods.class));
+                                Intent intent = new Intent(FSignup.this, FMoods.class);
+                                intent.putExtra("user_name", nameTxt);
+                                startActivity(intent);
                                 finish();
                             }
                         }

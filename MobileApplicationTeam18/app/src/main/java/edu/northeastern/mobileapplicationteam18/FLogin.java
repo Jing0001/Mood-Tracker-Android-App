@@ -56,7 +56,9 @@ public class FLogin extends AppCompatActivity {
                                 final String getPassword = snapshot.child(nameTxt).child("password").getValue(String.class);
                                 if (getPassword.equals(passwordTxt)){
                                     Toast.makeText(FLogin.this,"Logged In Successfully",Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(FLogin.this, FMoods.class));
+                                    Intent intent = new Intent(FLogin.this, FMoods.class);
+                                    intent.putExtra("user_name", nameTxt);
+                                    startActivity(intent);
                                     finish();
                                 }
                                 else{

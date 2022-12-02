@@ -6,12 +6,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class EmojiViewHolder extends RecyclerView.ViewHolder {
+public class FEmojiViewHolder extends RecyclerView.ViewHolder {
     private final ImageView receivedEmojiIV;
     private final TextView senderTV;
     private final TextView sendTimeTV;
 
-    public EmojiViewHolder(@NonNull View itemView) {
+    public FEmojiViewHolder(@NonNull View itemView) {
         super(itemView);
         this.senderTV = itemView.findViewById(R.id.senderTV);
         this.receivedEmojiIV = itemView.findViewById(R.id.receivedEmojiIV);
@@ -29,17 +29,17 @@ public class EmojiViewHolder extends RecyclerView.ViewHolder {
 
     private int getImageResourceById(int id) {
         if (id == 1) {
-            return R.drawable.angry;
+            return R.drawable.hi;
         } else if (id == 2) {
-            return R.drawable.confused;
+            return R.drawable.bye;
         } else if (id == 3) {
-            return R.drawable.sad;
+            return R.drawable.alright;
         } else if (id == 4) {
-            return R.drawable.naughty;
+            return R.drawable.here;
         } else if (id == 5) {
-            return R.drawable.sleepy;
+            return R.drawable.call;
         } else if (id == 6) {
-            return R.drawable.heartbreak;
+            return R.drawable.haveaniceday;
         }
         return -1;
     }
