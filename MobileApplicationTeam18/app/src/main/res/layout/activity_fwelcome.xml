@@ -8,14 +8,14 @@
 
     <TextView
         android:id="@+id/welcome"
-        android:layout_width="271dp"
-        android:layout_height="51dp"
+        android:layout_width="231dp"
+        android:layout_height="44dp"
         android:layout_marginTop="91dp"
         android:layout_marginBottom="18dp"
         android:fontFamily="@font/akaya_telivigala"
         android:text="@string/welcome"
         android:textColor="@color/green"
-        android:textSize="35sp"
+        android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/moody"
         app:layout_constraintEnd_toEndOf="parent"

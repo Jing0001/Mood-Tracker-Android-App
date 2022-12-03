@@ -23,7 +23,7 @@ public class FMoods extends AppCompatActivity {
     GridLayout mainGrid;
     Integer count = 0;
     String userName;
-//    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +73,7 @@ public class FMoods extends AppCompatActivity {
         cardView0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                databaseReference.child("FUser").child(userName).child("mood").setValue("Happy");
                 Intent intent = new Intent(FMoods.this, FM0.class);
                 startActivity(intent);
             }
@@ -81,6 +82,7 @@ public class FMoods extends AppCompatActivity {
         cardView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                databaseReference.child("FUser").child(userName).child("mood").setValue("Angry");
                 Intent intent = new Intent(FMoods.this, FM1.class);
                 startActivity(intent);
             }
@@ -89,6 +91,7 @@ public class FMoods extends AppCompatActivity {
         cardView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                databaseReference.child("FUser").child(userName).child("mood").setValue("Sad");
                 Intent intent = new Intent(FMoods.this, FM2.class);
                 startActivity(intent);
             }
@@ -97,6 +100,7 @@ public class FMoods extends AppCompatActivity {
         cardView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                databaseReference.child("FUser").child(userName).child("mood").setValue("Hysterical");
                 Intent intent = new Intent(FMoods.this, FM3.class);
                 startActivity(intent);
             }
@@ -105,6 +109,7 @@ public class FMoods extends AppCompatActivity {
         cardView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                databaseReference.child("FUser").child(userName).child("mood").setValue("Embarrassment");
                 Intent intent = new Intent(FMoods.this, FM4.class);
                 startActivity(intent);
             }
@@ -113,6 +118,7 @@ public class FMoods extends AppCompatActivity {
         cardView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                databaseReference.child("FUser").child(userName).child("mood").setValue("Fatigued");
                 Intent intent = new Intent(FMoods.this, FM5.class);
                 startActivity(intent);
             }

@@ -11,22 +11,9 @@
         tools:context=".FSendEmoji">
 
         <TextView
-            android:id="@+id/txtLa"
-            android:layout_width="57dp"
-            android:layout_height="38dp"
-            android:text="Latitude"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.019"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.104" />
-
-        <TextView
-            android:id="@+id/txtLo"
-            android:layout_width="69dp"
-            android:layout_height="38dp"
+            android:id="@+id/txtLo2"
+            android:layout_width="112dp"
+            android:layout_height="45dp"
             android:text="Longitude"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,30 +24,83 @@
             app:layout_constraintVertical_bias="0.161" />
 
         <TextView
-            android:id="@+id/txtLa1"
-            android:layout_width="57dp"
-            android:layout_height="38dp"
+            android:id="@+id/txtLa"
+            android:layout_width="114dp"
+            android:layout_height="45dp"
             android:text="Latitude"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.74"
+            app:layout_constraintHorizontal_bias="0.017"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.104" />
+            app:layout_constraintVertical_bias="0.085" />
 
         <TextView
-            android:id="@+id/txtLo1"
-            android:layout_width="69dp"
-            android:layout_height="38dp"
+            android:id="@+id/txtLo"
+            android:layout_width="112dp"
+            android:layout_height="45dp"
             android:text="Longitude"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.766"
+            app:layout_constraintHorizontal_bias="0.02"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.161" />
+
+
+        <TextView
+            android:id="@+id/mood"
+            android:layout_width="113dp"
+            android:layout_height="34dp"
+            android:text="Mood"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.023"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.233" />
+
+        <TextView
+            android:id="@+id/mood1"
+            android:layout_width="113dp"
+            android:layout_height="34dp"
+            android:text="Mood"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.815"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.235" />
+
+        <TextView
+            android:id="@+id/txtLa1"
+            android:layout_width="156dp"
+            android:layout_height="44dp"
+            android:text="Latitude"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.96"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.084" />
+
+        <TextView
+            android:id="@+id/txtLo1"
+            android:layout_width="156dp"
+            android:layout_height="49dp"
+            android:text="Longitude"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.96"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.16" />
 
         <TextView
             android:id="@+id/userName"
@@ -96,7 +136,7 @@
             android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/sendButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.373"
+            app:layout_constraintHorizontal_bias="0.194"
             app:layout_constraintStart_toEndOf="@+id/txtLa" />
 
         <Spinner
@@ -177,7 +217,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
             android:onClick="onSendButtonPressed"
-            android:text="@string/sendButton"
+            android:text="Send"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.479"
             app:layout_constraintStart_toStartOf="parent"
@@ -189,7 +229,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:onClick="onReceivedButtonPressed"
-            android:text="@string/received_history_string"
+            android:text="Receive"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sendButton" />

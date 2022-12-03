@@ -26,8 +26,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,6 +52,7 @@ import java.util.Properties;
 
 public class FSendEmoji extends AppCompatActivity implements LocationListener {
     private DatabaseReference userDB;
+    private FirebaseDatabase firebaseDatabase;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
     private ImageView emojiAngry, emojiConfused, emojiHeartbreak, emojiSad, emojiSleepy, emojiNaughty;
     private TextView emojiAngryTV, emojiConfusedTV, emojiHeartbreakTV, emojiSadTV, emojiSleepyTV, emojiNaughtyTV;
@@ -64,9 +68,15 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
     private static String SERVER_KEY;
     private TextView la;
     private TextView lo;
-    private TextView dis;
+    private TextView la1;
+    private TextView lo1;
+    private TextView moodtv;
+    private String mood;
+    private TextView moodtv1;
+    private String mood1;
     private Location startLocation;
     private LocationManager locationManager;
+    private DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,13 +93,18 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         userDB = FirebaseDatabase.getInstance().getReference();
         userNameTV = (TextView) findViewById(R.id.userName);
         userNameTV.setText("Hello, " + userName);
-
+        la = (TextView) findViewById(R.id.txtLa);
+        lo = (TextView) findViewById(R.id.txtLo);
+        la1 = (TextView) findViewById(R.id.txtLa1);
+        lo1 = (TextView) findViewById(R.id.txtLo1);
+        moodtv = (TextView) findViewById(R.id.mood);
+        moodtv1 = (TextView) findViewById(R.id.mood1);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         initializeAllEmoji();
         readDataFromDB();
         initializeSpinner();
-        la = (TextView) findViewById(R.id.txtLa);
-        lo = (TextView) findViewById(R.id.txtLo);
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+
         getLocation();
         receive.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +112,18 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
                 Intent intent = new Intent(FSendEmoji.this, FReceiveEmoji.class);
                 intent.putExtra("user_name", userName);
                 startActivity(intent);
+            }
+        });
+        userDB.child("FUser").child(userName).child("mood").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mood = snapshot.getValue().toString();
+                moodtv.setText(mood);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
@@ -150,6 +177,22 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
                     androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
                     userNames);
             friends.setAdapter(adapter);
+            String selectedUsername = friends.getSelectedItem().toString();
+            userDB.child("FUser").child(selectedUsername).child("mood").addValueEventListener(new ValueEventListener(){
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.getValue() == null){
+                        moodtv1.setText("Unavailable");
+                    } else{
+                        mood1 = snapshot.getValue().toString();
+                        moodtv1.setText("Mood: "+mood1);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
         });
     }
 
@@ -387,11 +430,18 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         if (startLocation == null) {
             startLocation = location;
         }
-
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
         la.setText("Latitude: " + String.valueOf(latitude));
         lo.setText("Longitude: " + String.valueOf(longitude));
+        postToDatabase(location);
+    }
+
+    public void postToDatabase(Location location) {
+        double latitude = location.getLatitude();
+        double longitude = location.getLongitude();
+        userDB.child("FUser").child(userName).child("location").child("latitude").setValue(latitude);
+        userDB.child("FUser").child(userName).child("location").child("longitude").setValue(longitude);
     }
 
     private double distance(Location location) {
