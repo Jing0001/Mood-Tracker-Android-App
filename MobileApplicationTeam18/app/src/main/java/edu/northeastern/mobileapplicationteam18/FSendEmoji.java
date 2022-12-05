@@ -169,6 +169,7 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         });
     }
 
+    // set spinner
     private void initializeSpinner() {
         userDB.child("FUser").get().addOnCompleteListener((task) -> {
             HashMap<String, HashMap<String, String>> myMap = (HashMap) task.getResult().getValue();
@@ -233,7 +234,7 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
                         loReceiver = snapshot.getValue().toString();
                         System.out.println("=================long=================");
                         System.out.println("longRe:" + loReceiver);
-                        loTVReceiver.setText("latitude: "+laReceiver);
+                        loTVReceiver.setText("longitude: "+loReceiver);
                     }
                 }
                 @Override

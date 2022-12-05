@@ -208,7 +208,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         }
     }
 
-    // get user's location when sign in
+    // get user's location(la, lo, city name) when sign in and post to database
     private void getLocation(){
         if (ActivityCompat.checkSelfPermission(FMoods.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, (LocationListener) this);
@@ -219,15 +219,9 @@ public class FMoods extends AppCompatActivity implements LocationListener {
     }
     @Override
     public void onLocationChanged(@NonNull Location location) {
-//        if (startLocation == null) {
-//            startLocation = location;
-//        }
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
-//        la.setText("Latitude: " + String.valueOf(latitude));
-//        lo.setText("Longitude: " + String.valueOf(longitude));
         postToDatabase(location);
-//        adding user location data to database
     }
 
     public void postToDatabase(Location location) {
