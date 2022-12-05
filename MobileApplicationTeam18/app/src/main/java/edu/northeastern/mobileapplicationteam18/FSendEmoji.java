@@ -74,8 +74,8 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
     private Map<String, String> userIdUserNamePair = new HashMap<>();
     public static final String DATE = "yyyy-MM-dd hh:mm:ss";
     private static String SERVER_KEY;
-    private TextView la;
-    private TextView lo;
+    private TextView laTVSender;
+    private TextView loTVSender;
     private TextView laTVReceiver;
     private TextView loTVReceiver;
     private String laReceiver;
@@ -103,8 +103,8 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         userDB = FirebaseDatabase.getInstance().getReference();
         userNameTV = (TextView) findViewById(R.id.userName);
         userNameTV.setText("Hello, " + userName);
-        la = (TextView) findViewById(R.id.txtLa);
-        lo = (TextView) findViewById(R.id.txtLo);
+        laTVSender = (TextView) findViewById(R.id.txtLa);
+        loTVSender = (TextView) findViewById(R.id.txtLo);
         laTVReceiver = (TextView) findViewById(R.id.txtLaReceiver);
         loTVReceiver = (TextView) findViewById(R.id.txtLoReceiver);
         moodtv = (TextView) findViewById(R.id.mood);
@@ -176,12 +176,18 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
             List<String> userNames = new ArrayList<>();
             for (String userId : myMap.keySet()) {
                 String anotherUserName = myMap.get(userId).get("name");
+                String userCity = myMap.get(userId).get("city");
+//                System.out.println("location:" + myMap.get(userId) +"////?????");
                 if (anotherUserName == null || anotherUserName.equals(userName)) {
                     continue;
                 }
-                userNames.add(anotherUserName);
-                userIdUserNamePair.put(userId, anotherUserName);
-                userNameUserIdPair.put(anotherUserName, userId);
+                String userNameCity = anotherUserName + " @ " + userCity;
+                userNames.add(userNameCity);
+                userIdUserNamePair.put(userId, userNameCity);
+                userNameUserIdPair.put(userNameCity, userId);
+//                userNames.add(anotherUserName);
+//                userIdUserNamePair.put(userId, anotherUserName);
+//                userNameUserIdPair.put(anotherUserName, userId);
             }
             ArrayAdapter<String> adapter
                     = new ArrayAdapter<>(getApplicationContext(),
@@ -243,7 +249,7 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
             });
 
         });
-    }
+    }  // end of spinner
 
     public void emojiOnClickListener(View v) {
         if (emojiClicked.get(v)) {
@@ -483,8 +489,15 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
         System.out.println("location"+location.getLatitude() + ")))))))))))))))))))))))))))))))");
-        la.setText("Latitude: " + String.valueOf(latitude));
-        lo.setText("Longitude: " + String.valueOf(longitude));
+        laTVSender.setText("Latitude: " + String.valueOf(latitude));
+//        loTVSender.setText("Longitude: " + String.valueOf(longitude));
+        String city = getCity(latitude, longitude);
+        System.out.println("city:"+ city+ "\\\\\\\\\\\\\\\\\\");
+        if(city == ""){
+            loTVSender.setText("City: " + "null");
+        }
+        loTVSender.setText("City: " + city);
+
         postToDatabase(location);
 //        adding user location data to database
     }
@@ -496,7 +509,7 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
 
         userDB.child("FUser").child(userName).child("location").child("latitude").setValue(latitude);
         userDB.child("FUser").child(userName).child("location").child("longitude").setValue(longitude);
-        userDB.child("FUser").child(userName).child("location").child("city").setValue(city);
+//        userDB.child("FUser").child(userName).child("location").child("city").setValue(city);
     }
 
     private double distance(Location location) {

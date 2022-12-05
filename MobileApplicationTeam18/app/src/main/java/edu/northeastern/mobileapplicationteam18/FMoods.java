@@ -61,6 +61,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         CardView cardView4 = (CardView) mainGrid.getChildAt(4);
         CardView cardView5 = (CardView) mainGrid.getChildAt(5);
         CardView cardView6 = (CardView) mainGrid.getChildAt(6);
+
         calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -232,6 +233,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         databaseReference.child("FUser").child(userName).child("location").child("latitude").setValue(latitude);
         databaseReference.child("FUser").child(userName).child("location").child("longitude").setValue(longitude);
         databaseReference.child("FUser").child(userName).child("location").child("city").setValue(city);
+//        databaseReference.child("FUser").child(userName).child("city").setValue(city);
     }
 
     // get city name by la and lo
