@@ -1,10 +1,20 @@
 package edu.northeastern.mobileapplicationteam18;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,16 +26,23 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
-public class FMoods extends AppCompatActivity {
+public class FMoods extends AppCompatActivity implements LocationListener {
+    private LocationManager locationManager;
+    private static final int PERMISSIONS_FINE_LOCATION = 99;
     GridLayout mainGrid;
     Integer count = 0;
     String userName;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        getLocation();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fmoods);
         Bundle extras = getIntent().getExtras();
@@ -110,6 +127,7 @@ public class FMoods extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Embarrassment");
+//                databaseReference.child("FMoods").child(userName).child()
                 Intent intent = new Intent(FMoods.this, FM4.class);
                 startActivity(intent);
             }
@@ -119,6 +137,7 @@ public class FMoods extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Fatigued");
+
                 Intent intent = new Intent(FMoods.this, FM5.class);
                 startActivity(intent);
             }
@@ -187,6 +206,60 @@ public class FMoods extends AppCompatActivity {
         }else{
             Toast.makeText(getBaseContext(),"Click again to sign out", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    // get user's location when sign in
+    private void getLocation(){
+        if (ActivityCompat.checkSelfPermission(FMoods.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, (LocationListener) this);
+        }
+        else{
+            ActivityCompat.requestPermissions(FMoods.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_FINE_LOCATION);
+        }
+    }
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+//        if (startLocation == null) {
+//            startLocation = location;
+//        }
+        double latitude = location.getLatitude();
+        double longitude = location.getLongitude();
+//        la.setText("Latitude: " + String.valueOf(latitude));
+//        lo.setText("Longitude: " + String.valueOf(longitude));
+        postToDatabase(location);
+//        adding user location data to database
+    }
+
+    public void postToDatabase(Location location) {
+        double latitude = location.getLatitude();
+        double longitude = location.getLongitude();
+        String city = getCity(latitude, longitude);
+
+        databaseReference.child("FUser").child(userName).child("location").child("latitude").setValue(latitude);
+        databaseReference.child("FUser").child(userName).child("location").child("longitude").setValue(longitude);
+        databaseReference.child("FUser").child(userName).child("location").child("city").setValue(city);
+    }
+
+    // get city name by la and lo
+    private String getCity(double la, double lo){
+        String cityName = "";
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        List<Address> addresses;
+        try{
+            addresses = geocoder.getFromLocation(la,lo,10);
+            if (addresses.size() > 0){
+                for(Address ad : addresses){
+                    if (ad.getLocality() != null && ad.getLocality().length() > 0){
+                        cityName = ad.getLocality();
+                        break;
+                    }
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return cityName;
     }
 
 }

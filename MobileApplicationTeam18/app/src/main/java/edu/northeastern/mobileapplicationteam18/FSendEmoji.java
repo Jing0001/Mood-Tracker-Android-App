@@ -13,6 +13,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -47,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
@@ -475,8 +478,10 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         if (startLocation == null) {
             startLocation = location;
         }
+
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
+        System.out.println("location"+location.getLatitude() + ")))))))))))))))))))))))))))))))");
         la.setText("Latitude: " + String.valueOf(latitude));
         lo.setText("Longitude: " + String.valueOf(longitude));
         postToDatabase(location);
@@ -486,8 +491,11 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
     public void postToDatabase(Location location) {
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
+        String city = getCity(latitude, longitude);
+
         userDB.child("FUser").child(userName).child("location").child("latitude").setValue(latitude);
         userDB.child("FUser").child(userName).child("location").child("longitude").setValue(longitude);
+        userDB.child("FUser").child(userName).child("location").child("city").setValue(city);
     }
 
     private double distance(Location location) {
@@ -496,5 +504,27 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         return results[0];
     }
 
+
+    // get city name by la and lo
+    private String getCity(double la, double lo){
+        String cityName = "";
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        List<Address> addresses;
+        try{
+            addresses = geocoder.getFromLocation(la,lo,10);
+            if (addresses.size() > 0){
+                for(Address ad : addresses){
+                    if (ad.getLocality() != null && ad.getLocality().length() > 0){
+                        cityName = ad.getLocality();
+                        break;
+                    }
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return cityName;
+    }
 }
 
