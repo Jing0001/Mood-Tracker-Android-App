@@ -96,7 +96,25 @@ public class FMoods extends AppCompatActivity implements LocationListener {
                 startActivity(intent);
             }
         });
-        // 1
+
+        // try to add the selected mood to data base
+        cardView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                databaseReference.child("FUser").child(userName).child("mood").setValue("Angry");
+//                if(databaseReference.child("FMoodTrack").child(userName).getValue("Angry") == null){
+//                    databaseReference.child("FMoodTrack").child(userName).child("Angry").setValue("1");
+//                }else{
+//                    String count = databaseReference.child("FMoodTrack").child(userName).getValue("Angry");
+//                    databaseReference.child("FMoodTrack").child(userName).child("Angry").setValue(count);
+//                }
+
+                Intent intent = new Intent(FMoods.this, FM1.class);
+                startActivity(intent);
+            }
+        });
+
+        // 1:press happy mood
         cardView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -233,7 +251,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         databaseReference.child("FUser").child(userName).child("location").child("latitude").setValue(latitude);
         databaseReference.child("FUser").child(userName).child("location").child("longitude").setValue(longitude);
         databaseReference.child("FUser").child(userName).child("location").child("city").setValue(city);
-//        databaseReference.child("FUser").child(userName).child("city").setValue(city);
+        databaseReference.child("FUser").child(userName).child("city").setValue(city);
     }
 
     // get city name by la and lo

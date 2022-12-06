@@ -509,7 +509,8 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
 
         userDB.child("FUser").child(userName).child("location").child("latitude").setValue(latitude);
         userDB.child("FUser").child(userName).child("location").child("longitude").setValue(longitude);
-//        userDB.child("FUser").child(userName).child("location").child("city").setValue(city);
+        userDB.child("FUser").child(userName).child("location").child("city").setValue(city);
+        userDB.child("FUser").child(userName).child("city").setValue(city);
     }
 
     private double distance(Location location) {
