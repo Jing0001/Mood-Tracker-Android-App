@@ -72,9 +72,6 @@ public class FSignup extends AppCompatActivity {
                     Toast.makeText(FSignup.this,"Passwords Do Not Match",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    System.out.println("_BBB______------------------------------");
-                    System.out.println(databaseReference);
-                    System.out.println(databaseReference.child("users").getKey());
                     databaseReference.child("FUser").child("abc").child("email").setValue("def");
                     databaseReference.child("FUser").addListenerForSingleValueEvent(new ValueEventListener() {
 

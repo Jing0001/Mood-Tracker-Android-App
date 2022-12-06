@@ -90,7 +90,7 @@
             android:name=".FImage"
             android:exported="false" />
         <activity
-            android:name=".FM0"
+            android:name=".FM0happy"
             android:exported="false" />
         <activity
             android:name=".FM1"

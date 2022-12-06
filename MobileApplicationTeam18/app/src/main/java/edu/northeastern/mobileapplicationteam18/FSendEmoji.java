@@ -95,6 +95,7 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         if (extras != null) {
             userName = extras.getString("user_name");
         }
+
         SERVER_KEY = "key=" + getProperties(getApplicationContext()).getProperty("SERVER_KEY");
         setContentView(R.layout.activity_fsend_emoji);
         createNotificationChannel();
@@ -124,6 +125,7 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
                 startActivity(intent);
             }
         });
+        System.out.println("username: " + userName + "////////////////" );
         userDB.child("FUser").child(userName).child("mood").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -157,7 +159,6 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
             HashMap<String, HashMap<String, String>> emojiMap = (HashMap) task.getResult().getValue();
             if (!emojiMap.isEmpty()) {
                 for (String entryKey : emojiMap.keySet()) {
-                    System.out.println(emojiMap.keySet());
                     String fromUser = emojiMap.get(entryKey).get("fromUser");
                     if (fromUser != null && fromUser.equals(userName)) {
                         String id = String.valueOf(emojiMap.get(entryKey).get("id"));

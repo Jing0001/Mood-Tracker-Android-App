@@ -9,7 +9,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -18,7 +17,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,8 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -38,6 +34,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
     GridLayout mainGrid;
     Integer count = 0;
     String userName;
+    private TextView currUserNameTV;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +43,13 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fmoods);
         Bundle extras = getIntent().getExtras();
+        System.out.println("extras in moods: " + extras );
         if (extras != null) {
             userName = extras.getString("user_name");
         }
+        System.out.println("userName: " + userName);
+        currUserNameTV = (TextView) findViewById(R.id.currentUser);
+        currUserNameTV.setText(userName);
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
 
         Button calendar = (Button) findViewById(R.id.calendar);
@@ -92,7 +93,8 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Happy");
-                Intent intent = new Intent(FMoods.this, FM0.class);
+                Intent intent = new Intent(FMoods.this, FM0happy.class);
+                intent.putExtra("user_name", userName);
                 startActivity(intent);
             }
         });
@@ -101,20 +103,23 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         cardView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                databaseReference.child("FUser").child(userName).child("mood").setValue("Angry");
+
+                databaseReference.child("FUser").child(userName).child("mood").setValue("Happy");
+                databaseReference.child("FUser").child(userName).child("city").setValue(("1"));
 //                if(databaseReference.child("FMoodTrack").child(userName).getValue("Angry") == null){
 //                    databaseReference.child("FMoodTrack").child(userName).child("Angry").setValue("1");
 //                }else{
 //                    String count = databaseReference.child("FMoodTrack").child(userName).getValue("Angry");
 //                    databaseReference.child("FMoodTrack").child(userName).child("Angry").setValue(count);
 //                }
-
+//                databaseReference.child("FMoods").child(userName).child("Happy").setValue(("1"));
+//                System.out.println("Fmoods table:",databaseReference.child("FMoods").child(userName).getKey("Happy"));
                 Intent intent = new Intent(FMoods.this, FM1.class);
                 startActivity(intent);
             }
         });
 
-        // 1:press happy mood
+        // 1:press angry mood
         cardView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -203,7 +208,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
 //                @Override
 //                public void onClick(View view) {
 //                    if (finalI == 0){
-//                        Intent intent = new Intent(FMoods.this, FM0.class);
+//                        Intent intent = new Intent(FMoods.this, FM0happy.class);
 //                        startActivity(intent);
 //                    }
 //                    else if (finalI == 1){
@@ -238,8 +243,6 @@ public class FMoods extends AppCompatActivity implements LocationListener {
     }
     @Override
     public void onLocationChanged(@NonNull Location location) {
-        double latitude = location.getLatitude();
-        double longitude = location.getLongitude();
         postToDatabase(location);
     }
 
