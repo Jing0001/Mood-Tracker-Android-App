@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,10 +26,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class FMoods extends AppCompatActivity implements LocationListener {
+//    public Map<String, Integer> moodSelectCount = new HashMap<String, Integer>();
     private LocationManager locationManager;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
     GridLayout mainGrid;
@@ -63,6 +67,32 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         CardView cardView5 = (CardView) mainGrid.getChildAt(5);
         CardView cardView6 = (CardView) mainGrid.getChildAt(6);
 
+//        int countSad = Integer.parseInt(databaseReference.child("FUser").child(userName).child("Sad").getKey());
+//        int countHappy = Integer.parseInt(databaseReference.child("FUser").child(userName).child("Happy").getKey());
+//        int countAngry = Integer.parseInt(databaseReference.child("FUser").child(userName).child("Angry").getKey());
+//        int countHysterical = Integer.parseInt(databaseReference.child("FUser").child(userName).child("Hysterical").getKey());
+//        int countEmbarrassment = Integer.parseInt(databaseReference.child("FUser").child(userName).child("Embarrassment").getKey());
+//        int countFatigued = Integer.parseInt(databaseReference.child("FUser").child(userName).child("Fatigued").getKey());
+//        FCountMoodSelected.moodSelectCount.put("Sad", countSad);
+//        FCountMoodSelected.moodSelectCount.put("Happy", countHappy);
+//        FCountMoodSelected.moodSelectCount.put("Angry", countAngry);
+//        FCountMoodSelected.moodSelectCount.put("Hysterical", countHysterical);
+//        FCountMoodSelected.moodSelectCount.put("Embarrassment",countEmbarrassment);
+//        FCountMoodSelected.moodSelectCount.put("Fatigued", countFatigued);
+
+        // read mood count from db -- on going
+//        private void readDataFromDB() {
+//            databaseReference.child("FUser").get().addOnCompleteListener((task) -> {
+//            HashMap<String, HashMap<String, String>> countMap = (HashMap) task.getResult().getValue();
+//            for (String userId : countMap.keySet()) {
+//                String userName = countMap.get(userId).get("name");
+////                Map<String, Integer> moodSelectCount = countMap.get(userId).get("moodCount");
+//                String moodSelectCount = countMap.get(userId).get("moodCount");
+//                System.out.println("moodselectedCnt: " + moodSelectCount + "~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//            }
+//            });
+//        }
+
         calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,88 +118,86 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             }
         });
 
-        // 0
+        // 0 -happy
         cardView0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Happy");
+                FCountMoodSelected.moodSelectCount.merge(databaseReference.child("FUser").child(userName).child("Happy").getKey(), 1,  Integer::sum);
+//                FCountMoodSelected.moodSelectCount.merge("Happy", 1,  Integer::sum);
+                System.out.println("cunt:" + FCountMoodSelected.moodSelectCount.get("Happy") + "<<<<<<<<<<<<<<<<<<<<<");
+                databaseReference.child("FUser").child(userName).child("moodCount").setValue(FCountMoodSelected.moodSelectCount);
                 Intent intent = new Intent(FMoods.this, FM0happy.class);
                 intent.putExtra("user_name", userName);
                 startActivity(intent);
             }
         });
 
-        // try to add the selected mood to data base
-        cardView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                databaseReference.child("FUser").child(userName).child("mood").setValue("Happy");
-                databaseReference.child("FUser").child(userName).child("city").setValue(("1"));
-//                if(databaseReference.child("FMoodTrack").child(userName).getValue("Angry") == null){
-//                    databaseReference.child("FMoodTrack").child(userName).child("Angry").setValue("1");
-//                }else{
-//                    String count = databaseReference.child("FMoodTrack").child(userName).getValue("Angry");
-//                    databaseReference.child("FMoodTrack").child(userName).child("Angry").setValue(count);
-//                }
-//                databaseReference.child("FMoods").child(userName).child("Happy").setValue(("1"));
-//                System.out.println("Fmoods table:",databaseReference.child("FMoods").child(userName).getKey("Happy"));
-                Intent intent = new Intent(FMoods.this, FM1.class);
-                startActivity(intent);
-            }
-        });
 
         // 1:press angry mood
         cardView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Angry");
+                FCountMoodSelected.moodSelectCount.merge(databaseReference.child("FUser").child(userName).child("Angry").getKey(), 1,  Integer::sum);
+//                FCountMoodSelected.moodSelectCount.merge("Angry", 1,  Integer::sum);
+                databaseReference.child("FUser").child(userName).child("moodCount").setValue(FCountMoodSelected.moodSelectCount);
                 Intent intent = new Intent(FMoods.this, FM1.class);
                 startActivity(intent);
             }
         });
-        //2
+
+        //2-sad
         cardView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Sad");
+                FCountMoodSelected.moodSelectCount.merge(databaseReference.child("FUser").child(userName).child("Sad").getKey(), 1,  Integer::sum);
+//                FCountMoodSelected.moodSelectCount.merge("Sad", 1,  Integer::sum);
+                databaseReference.child("FUser").child(userName).child("moodCount").setValue(FCountMoodSelected.moodSelectCount);
                 Intent intent = new Intent(FMoods.this, FM2.class);
                 startActivity(intent);
             }
         });
-        //3
+
+        //3 - Histerical
         cardView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Hysterical");
+                FCountMoodSelected.moodSelectCount.merge(databaseReference.child("FUser").child(userName).child("Hysterical").getKey(), 1,  Integer::sum);
+//                FCountMoodSelected.moodSelectCount.merge("Hysterical", 1,  Integer::sum);
+                databaseReference.child("FUser").child(userName).child("moodCount").setValue(FCountMoodSelected.moodSelectCount);
                 Intent intent = new Intent(FMoods.this, FM3.class);
                 startActivity(intent);
             }
         });
-        //4
+
+        //4 -embarrassed
         cardView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Embarrassment");
-//                databaseReference.child("FMoods").child(userName).child()
+                FCountMoodSelected.moodSelectCount.merge(databaseReference.child("FUser").child(userName).child("Embarrassment").getKey(), 1,  Integer::sum);
+//                FCountMoodSelected.moodSelectCount.merge("Embarrassment", 1,  Integer::sum);
+                databaseReference.child("FUser").child(userName).child("moodCount").setValue(FCountMoodSelected.moodSelectCount);
                 Intent intent = new Intent(FMoods.this, FM4.class);
                 startActivity(intent);
             }
         });
-        //5
+
+        //5 -Fatigued
         cardView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Fatigued");
-
+                FCountMoodSelected.moodSelectCount.merge(databaseReference.child("FUser").child(userName).child("Fatigued").getKey(), 1,  Integer::sum);
+//                FCountMoodSelected.moodSelectCount.merge("Fatigued", 1,  Integer::sum);
+                databaseReference.child("FUser").child(userName).child("moodCount").setValue(FCountMoodSelected.moodSelectCount);
                 Intent intent = new Intent(FMoods.this, FM5.class);
                 startActivity(intent);
             }
         });
-
-        //Set Event
-//        setSingleEvent(mainGrid);
-        //setToggleEvent(mainGrid);
     }
 
 //    private void setToggleEvent(GridLayout mainGrid) {
@@ -278,5 +306,6 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         }
         return cityName;
     }
+
 
 }

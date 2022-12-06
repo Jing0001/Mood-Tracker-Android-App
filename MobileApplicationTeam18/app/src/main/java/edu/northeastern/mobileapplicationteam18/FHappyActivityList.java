@@ -24,8 +24,6 @@ import java.util.List;
 
 public class FHappyActivityList extends AppCompatActivity {
     FloatingActionButton addBtn;
-
-
     private RecyclerView mRecyclerView;
     private FAdapter mAdapter;
     private DatabaseReference mDatabaseReference;

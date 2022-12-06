@@ -77,8 +77,6 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
     private TextView loTVSender;
     private TextView laTVReceiver;
     private TextView loTVReceiver;
-    private String laReceiver;
-    private String loReceiver;
     private TextView moodtv;
     private String mood;
     private TextView moodTVReceiver;
@@ -124,7 +122,7 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
                 startActivity(intent);
             }
         });
-        System.out.println("username: " + userName + "////////////////" );
+
         userDB.child("FUser").child(userName).child("mood").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -153,6 +151,7 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         return properties;
     }
 
+
     private void readDataFromDB() {
         userDB.child("emojis").get().addOnCompleteListener((task) -> {
             HashMap<String, HashMap<String, String>> emojiMap = (HashMap) task.getResult().getValue();
@@ -177,17 +176,13 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
             for (String userId : myMap.keySet()) {
                 String anotherUserName = myMap.get(userId).get("name");
                 String userCity = myMap.get(userId).get("city");
-//                System.out.println("location:" + myMap.get(userId) +"////?????");
                 if (anotherUserName == null || anotherUserName.equals(userName)) {
                     continue;
                 }
-                String userNameCity = anotherUserName + " @ " + userCity;
-                userNames.add(userNameCity);
-                userIdUserNamePair.put(userId, userNameCity);
-                userNameUserIdPair.put(userNameCity, userId);
-//                userNames.add(anotherUserName);
-//                userIdUserNamePair.put(userId, anotherUserName);
-//                userNameUserIdPair.put(anotherUserName, userId);
+               String userNameCity = anotherUserName + " @ " + userCity;
+                    userNames.add(userNameCity);
+                    userIdUserNamePair.put(userId, userNameCity);
+                    userNameUserIdPair.put(userNameCity, userId);
             }
             ArrayAdapter<String> adapter
                     = new ArrayAdapter<>(getApplicationContext(),
@@ -308,7 +303,6 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
 
                     ImageView imageViewById = getImageViewById(selectedEmojiId);
                     if (imageViewById == null) {
-//                        Log.e("UI", "ID not supported in this app version...");
                         return;
                     }
                     emojiSentCount.merge(getImageViewById(selectedEmojiId), 1, Integer::sum);
@@ -488,14 +482,10 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
 
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
-        System.out.println("location"+location.getLatitude() + ")))))))))))))))))))))))))))))))");
-//        laTVSender.setText("Latitude: " + String.valueOf(latitude));moo
-//        laTVSender.setText("Latitude: " + String.valueOf(latitude));
-//        loTVSender.setText("Longitude: " + String.valueOf(longitude));
         String city = getCity(latitude, longitude);
-        System.out.println("city:"+ city+ "\\\\\\\\\\\\\\\\\\");
+
         if(city == ""){
-            loTVSender.setText("At " + "null");
+            loTVSender.setText("At a mysterious place");
         }
         loTVSender.setText("At " + city);
 
@@ -514,9 +504,9 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         userDB.child("FUser").child(userName).child("city").setValue(city);
     }
 
-    private double distance(Location location) {
+    private double distance(double laSender, double loSender, double laReceiver, double loReceiver) {
         float[] results = new float[3];
-        Location.distanceBetween(startLocation.getLatitude(), startLocation.getLongitude(), location.getLatitude(), location.getLongitude(), results);
+        Location.distanceBetween(laSender, loSender,laReceiver,loReceiver, results);
         return results[0];
     }
 

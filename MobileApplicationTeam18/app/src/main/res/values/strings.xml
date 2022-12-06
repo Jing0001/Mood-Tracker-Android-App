@@ -19,7 +19,7 @@
     <string name="channel_id">Team18</string>
     <string name="sendButton">Send Emoji</string>
     <string name="send_emoji_to">Send emoji To</string>
-    <string name="welcome">Welcome to Moody</string>
+    <string name="welcome">Moody</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="back"><![CDATA[<-]]></string>

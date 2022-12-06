@@ -22,8 +22,6 @@ public class FM0happy extends AppCompatActivity {
         if (extras != null) {
             userName = extras.getString("user_name");
         }
-
-        System.out.println("userName: " + userName +"____________________");
         userInHappyTV = (TextView) findViewById(R.id.userInHappy);
         userInHappyTV.setText(userName);
 
