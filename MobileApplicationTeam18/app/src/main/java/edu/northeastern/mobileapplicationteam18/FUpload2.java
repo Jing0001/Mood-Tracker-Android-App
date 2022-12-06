@@ -4,7 +4,6 @@ package edu.northeastern.mobileapplicationteam18;
         import android.net.Uri;
         import android.os.Handler;
         import android.os.Bundle;
-        import android.util.Log;
         import android.view.View;
         import android.webkit.MimeTypeMap;
         import android.widget.Button;
@@ -170,7 +169,7 @@ public class FUpload2 extends AppCompatActivity {
         }
     }
     private void openImagesActivity(){
-        Intent intent = new Intent(this, FImage.class);
+        Intent intent = new Intent(this, FHappyActivityList.class);
         startActivity(intent);
     }
 }

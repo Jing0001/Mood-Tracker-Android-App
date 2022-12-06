@@ -87,7 +87,7 @@
             android:name=".FImage1"
             android:exported="false" />
         <activity
-            android:name=".FImage"
+            android:name=".FHappyActivityList"
             android:exported="false" />
         <activity
             android:name=".FM0happy"
@@ -125,7 +125,7 @@
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:name=".FUpload"
+            android:name=".FUploadActivityHappy"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
 

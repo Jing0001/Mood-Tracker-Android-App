@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -28,7 +27,7 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-public class FUpload extends AppCompatActivity {
+public class FUploadActivityHappy extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
 
     private Button chooseImageBtn;
@@ -47,7 +46,7 @@ public class FUpload extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate ( savedInstanceState );
-        setContentView ( R.layout.activity_fupload );
+        setContentView ( R.layout.activity_fupload_act_happy);
         chooseImageBtn = findViewById(R.id.button_choose_image);
         uploadBtn = findViewById(R.id.uploadBtn);
         nameEditText = findViewById(R.id.nameEditText);
@@ -73,7 +72,7 @@ public class FUpload extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
-                    Toast.makeText(FUpload.this, "An Upload is Still in Progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FUploadActivityHappy.this, "An Upload is Still in Progress", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadFile();
                 }
@@ -135,7 +134,7 @@ public class FUpload extends AppCompatActivity {
 
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
-                            Toast.makeText(FUpload.this, "Upload successful. Press back to see updated list.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(FUploadActivityHappy.this, "Upload successful. Press back to see updated list.", Toast.LENGTH_LONG).show();
 //                            FActivity upload = new FActivity(nameEditText.getText().toString().trim(),
 //                                    taskSnapshot.getMetadata().getReference().getDownloadUrl().toString(),
 //                                    descriptionEditText.getText().toString());
@@ -155,7 +154,7 @@ public class FUpload extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             uploadProgressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(FUpload.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FUploadActivityHappy.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot> () {
@@ -170,7 +169,7 @@ public class FUpload extends AppCompatActivity {
         }
     }
     private void openImagesActivity(){
-        Intent intent = new Intent(this, FImage.class);
+        Intent intent = new Intent(this, FHappyActivityList.class);
         startActivity(intent);
     }
     }

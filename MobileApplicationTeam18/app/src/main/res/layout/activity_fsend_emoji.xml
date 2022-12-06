@@ -10,71 +10,74 @@
         android:layout_height="wrap_content"
         tools:context=".FSendEmoji">
 
-<!--        <TextView-->
-<!--            android:id="@+id/txtLo2"-->
-<!--            android:layout_width="112dp"-->
-<!--            android:layout_height="45dp"-->
-<!--            android:text="Longitude"-->
-<!--            android:textColor="@color/black"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.02"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintVertical_bias="0.161" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/txtLo2"-->
+        <!--            android:layout_width="112dp"-->
+        <!--            android:layout_height="45dp"-->
+        <!--            android:text="Longitude"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.02"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:layout_constraintVertical_bias="0.161" />-->
+
 
         <TextView
             android:id="@+id/txtLa"
-            android:layout_width="114dp"
-            android:layout_height="45dp"
+            android:layout_width="116dp"
+            android:layout_height="49dp"
             android:text="Latitude"
             android:textColor="@color/black"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.017"
+            app:layout_constraintHorizontal_bias="0.054"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.085" />
+            app:layout_constraintVertical_bias="0.058" />
 
         <TextView
             android:id="@+id/txtLo"
-            android:layout_width="112dp"
-            android:layout_height="45dp"
+            android:layout_width="142dp"
+            android:layout_height="48dp"
             android:text="Longitude"
             android:textColor="@color/black"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.02"
+            app:layout_constraintHorizontal_bias="0.919"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.161" />
-
+            app:layout_constraintVertical_bias="0.059" />
 
         <TextView
-            android:id="@+id/mood"
-            android:layout_width="113dp"
-            android:layout_height="34dp"
-            android:text="Mood"
+            android:id="@+id/selectFriend"
+            android:layout_width="184dp"
+            android:layout_height="53dp"
+            android:text="Share with a friend"
             android:textColor="@color/black"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.023"
+            app:layout_constraintHorizontal_bias="0.07"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.233" />
+            app:layout_constraintVertical_bias="0.146" />
 
         <TextView
             android:id="@+id/moodReceiver"
-            android:layout_width="113dp"
-            android:layout_height="34dp"
+            android:layout_width="114dp"
+            android:layout_height="45dp"
             android:text="Mood"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.815"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.235" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/txtLaReceiver"
@@ -84,10 +87,10 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.96"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.084" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/txtLoReceiver"
@@ -97,61 +100,42 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.96"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.16" />
-
-            <TextView
-                android:id="@+id/userName"
-                android:layout_width="103dp"
-                android:layout_height="13dp"
-                android:text="@string/user_name_string"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toTopOf="@id/emojiAngry"
-                app:layout_constraintEnd_toStartOf="@id/send_to"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.116" />
-
-            <TextView
-            android:id="@+id/send_to"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="send to"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@id/emojiConfused"
-            app:layout_constraintEnd_toStartOf="@id/ffriend_spinner"
-            app:layout_constraintStart_toEndOf="@id/userName"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.12" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/vs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="496dp"
-            android:text="vs"
+            android:id="@+id/userName"
+            android:layout_width="115dp"
+            android:layout_height="50dp"
+            android:text="@string/user_name_string"
             android:textColor="@color/black"
             android:textSize="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/sendButton"
+            app:layout_constraintBottom_toTopOf="@id/emojiAngry"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.194"
-            app:layout_constraintStart_toEndOf="@+id/txtLa" />
+            app:layout_constraintHorizontal_bias="0.439"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.327" />
 
         <Spinner
             android:id="@+id/ffriend_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="49dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/send_to"
-            app:layout_constraintTop_toTopOf="@+id/send_to" />
+            app:layout_constraintHorizontal_bias="0.988"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.144" />
 
         <ImageView
             android:id="@+id/emojiAngry"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="148dp"
+            android:layout_marginTop="25dp"
             android:src="@drawable/hi"
             app:layout_constraintEnd_toStartOf="@id/emojiConfused"
             app:layout_constraintStart_toStartOf="parent"
@@ -161,7 +145,7 @@
             android:id="@+id/emojiConfused"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="148dp"
+            android:layout_marginTop="25dp"
             android:src="@drawable/bye"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/emojiAngry"
@@ -213,7 +197,7 @@
 
         <Button
             android:id="@+id/sendButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
             android:onClick="onSendButtonPressed"
@@ -225,7 +209,7 @@
 
         <Button
             android:id="@+id/receivedButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:onClick="onReceivedButtonPressed"

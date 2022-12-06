@@ -1,12 +1,17 @@
 package edu.northeastern.mobileapplicationteam18;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.Exclude;
 
+
 public class FActivity {
+
     private String name;
     private String imageURL;
     private String key;
     private String description;
     private int position;
+
+
 
 
     public FActivity() {

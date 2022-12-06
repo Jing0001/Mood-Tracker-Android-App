@@ -8,9 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 public class FM0happy extends AppCompatActivity {
 
     String userName;
@@ -18,7 +15,7 @@ public class FM0happy extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fm0);
+        setContentView(R.layout.activity_fm0_happy);
 
         Bundle extras = getIntent().getExtras();
         System.out.println("extras in moods: " + extras );
@@ -37,14 +34,14 @@ public class FM0happy extends AppCompatActivity {
         getlist0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FM0happy.this, FImage.class);
+                Intent intent = new Intent(FM0happy.this, FHappyActivityList.class);
                 startActivity(intent);
             }
         });
         addlist0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FM0happy.this, FUpload.class);
+                Intent intent = new Intent(FM0happy.this, FUploadActivityHappy.class);
                 startActivity(intent);
             }
         });
@@ -56,10 +53,7 @@ public class FM0happy extends AppCompatActivity {
                 intent.putExtra("user_name", userName);
                 System.out.println("userName on click: " + userName);
                 intent.putExtra("user_name", userName);
-//               ((TextView)findViewById(R.id.userName)).setText("test user");
 
-
-//
                 startActivity(intent);
             }
         });

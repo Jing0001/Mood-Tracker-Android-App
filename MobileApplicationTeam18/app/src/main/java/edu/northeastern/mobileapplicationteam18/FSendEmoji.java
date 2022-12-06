@@ -1,10 +1,5 @@
 package edu.northeastern.mobileapplicationteam18;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
@@ -19,7 +14,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,6 +21,11 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -103,12 +102,12 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         friends = findViewById(R.id.ffriend_spinner);
         userDB = FirebaseDatabase.getInstance().getReference();
         userNameTV = (TextView) findViewById(R.id.userName);
-        userNameTV.setText("Hello, " + userName);
+        userNameTV.setText(userName);
         laTVSender = (TextView) findViewById(R.id.txtLa);
         loTVSender = (TextView) findViewById(R.id.txtLo);
         laTVReceiver = (TextView) findViewById(R.id.txtLaReceiver);
         loTVReceiver = (TextView) findViewById(R.id.txtLoReceiver);
-        moodtv = (TextView) findViewById(R.id.mood);
+        moodtv = (TextView) findViewById(R.id.selectFriend);
         moodTVReceiver = (TextView) findViewById(R.id.moodReceiver);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         initializeAllEmoji();
@@ -130,7 +129,7 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 mood = snapshot.getValue().toString();
-                moodtv.setText(mood);
+                laTVSender.setText(mood);
             }
 
             @Override
@@ -216,38 +215,38 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
             });
 
             // get receiver's location
-            userDB.child("FUser").child(selectedUsername).child("location").child("latitude").addValueEventListener(new ValueEventListener(){
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.getValue() == null){
-                        laTVReceiver.setText("Unavailable");
-                    } else{
-                        laReceiver = snapshot.getValue().toString();
-                        laTVReceiver.setText("latitude: "+laReceiver);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-
-            userDB.child("FUser").child(selectedUsername).child("location").child("longitude").addValueEventListener(new ValueEventListener(){
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.getValue() == null){
-                        loTVReceiver.setText("Unavailable");
-                    } else{
-                        loReceiver = snapshot.getValue().toString();
-                        System.out.println("=================long=================");
-                        System.out.println("longRe:" + loReceiver);
-                        loTVReceiver.setText("longitude: "+loReceiver);
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
+//            userDB.child("FUser").child(selectedUsername).child("location").child("latitude").addValueEventListener(new ValueEventListener(){
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    if (snapshot.getValue() == null){
+//                        laTVReceiver.setText("Unavailable");
+//                    } else{
+//                        laReceiver = snapshot.getValue().toString();
+//                        laTVReceiver.setText("latitude: "+laReceiver);
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                }
+//            });
+//
+//            userDB.child("FUser").child(selectedUsername).child("location").child("longitude").addValueEventListener(new ValueEventListener(){
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    if (snapshot.getValue() == null){
+//                        loTVReceiver.setText("Unavailable");
+//                    } else{
+//                        loReceiver = snapshot.getValue().toString();
+//                        System.out.println("=================long=================");
+//                        System.out.println("longRe:" + loReceiver);
+//                        loTVReceiver.setText("longitude: "+loReceiver);
+//                    }
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                }
+//            });
 
         });
     }  // end of spinner
@@ -490,14 +489,15 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
         System.out.println("location"+location.getLatitude() + ")))))))))))))))))))))))))))))))");
-        laTVSender.setText("Latitude: " + String.valueOf(latitude));
+//        laTVSender.setText("Latitude: " + String.valueOf(latitude));moo
+//        laTVSender.setText("Latitude: " + String.valueOf(latitude));
 //        loTVSender.setText("Longitude: " + String.valueOf(longitude));
         String city = getCity(latitude, longitude);
         System.out.println("city:"+ city+ "\\\\\\\\\\\\\\\\\\");
         if(city == ""){
-            loTVSender.setText("City: " + "null");
+            loTVSender.setText("At " + "null");
         }
-        loTVSender.setText("City: " + city);
+        loTVSender.setText("At " + city);
 
         postToDatabase(location);
 //        adding user location data to database
