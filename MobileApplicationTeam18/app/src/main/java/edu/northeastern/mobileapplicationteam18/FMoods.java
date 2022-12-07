@@ -56,7 +56,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         currUserNameTV.setText(userName);
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
 
-//        Button calendar = (Button) findViewById(R.id.calendar);
+        Button calendar = (Button) findViewById(R.id.calendar);
         Button toMoodSummaryBtn = (Button) findViewById(R.id.toMoodSummary);
         Button memory = (Button) findViewById(R.id.memory);
         Button send = (Button) findViewById(R.id.fSend);
@@ -68,16 +68,16 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         CardView cardView5 = (CardView) mainGrid.getChildAt(5);
         CardView cardView6 = (CardView) mainGrid.getChildAt(6);
 
-
-//        calendar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(FMoods.this, FCalendar.class);
-////                Intent intent = new Intent(FMoods.this, FCalendarWeekView.class);
-//                startActivity(intent);
-//            }
-//        });
-
+//calendar button (can save activities user did)
+        calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FMoods.this, FCalendar.class);
+//                Intent intent = new Intent(FMoods.this, FCalendarWeekView.class);
+                startActivity(intent);
+            }
+        });
+//to summary button(can check mood summary)
         toMoodSummaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,7 +86,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
                 startActivity(intent);
             }
         });
-
+// record user's moment button (can save images)
         memory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +95,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
                 startActivity(intent);
             }
         });
-
+// can share mood with friend vid sending emojis
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +105,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             }
         });
 
-        // 0 -happy
+        // 0 - press happy mood
         cardView0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,7 +132,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             }
         });
 
-        //2-sad
+        //2-press sad mood
         cardView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,7 +145,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             }
         });
 
-        //3 - Histerical
+        //3 - press Hysterical mood
         cardView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,7 +158,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             }
         });
 
-        //4 -embarrassed
+        //4 - press embarrassed mood
         cardView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -171,7 +171,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             }
         });
 
-        //5 -Fatigued
+        //5 -  press Fatigued mood
         cardView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

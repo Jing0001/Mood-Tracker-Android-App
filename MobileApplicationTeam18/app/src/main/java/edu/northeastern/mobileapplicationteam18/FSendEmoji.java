@@ -323,7 +323,7 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         JSONObject jNotification = new JSONObject();
         JSONObject jdata = new JSONObject();
         try {
-            String title = "You have emoji send from " + emoji.fromUser;
+            String title = "You have a message sent from " + emoji.fromUser;
             jNotification.put("title", title);
             jdata.put("title", "data:" + title);
             jdata.put("image_id", emoji.id);
