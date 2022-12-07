@@ -82,6 +82,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FMoods.this, FMoodSummary.class);
+                intent.putExtra("user_name", userName);
                 startActivity(intent);
             }
         });
@@ -90,6 +91,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FMoods.this, FMemory.class);
+                intent.putExtra("user_name", userName);
                 startActivity(intent);
             }
         });

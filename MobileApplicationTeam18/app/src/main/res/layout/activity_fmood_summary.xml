@@ -126,8 +126,8 @@
 
     <TextView
         android:id="@+id/summary"
-        android:layout_width="345dp"
-        android:layout_height="82dp"
+        android:layout_width="318dp"
+        android:layout_height="72dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="250dp"
         android:layout_marginEnd="25dp"
