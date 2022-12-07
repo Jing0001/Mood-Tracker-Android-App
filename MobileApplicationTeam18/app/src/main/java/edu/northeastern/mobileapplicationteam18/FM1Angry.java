@@ -8,38 +8,39 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class FM0happy extends AppCompatActivity {
+public class FM1Angry extends AppCompatActivity {
 
     String userName;
-    TextView userInHappyTV;
+    TextView userInAngryTV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fm0_happy);
+        setContentView(R.layout.activity_fm1_angry);
 
         Bundle extras = getIntent().getExtras();
-        System.out.println("extras in moods: " + extras );
+        System.out.println("extras in moods in angry: " + extras );
         if (extras != null) {
             userName = extras.getString("user_name");
         }
-        userInHappyTV = (TextView) findViewById(R.id.userInHappy);
-        userInHappyTV.setText(userName);
+        userInAngryTV = (TextView) findViewById(R.id.userInAngry);
+        userInAngryTV.setText(userName);
 
-        Button getlist0 = (Button) findViewById(R.id.list0);
-        Button addlist0 = (Button) findViewById(R.id.addlist0);
+
+        Button getlist1 = (Button) findViewById(R.id.list1);
+        Button addlist1 = (Button) findViewById(R.id.addlist1);
         Button shareMood = (Button) findViewById(R.id.shareMood);
 
-        getlist0.setOnClickListener(new View.OnClickListener() {
+        getlist1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FM0happy.this, FHappyActivityList.class);
+                Intent intent = new Intent(FM1Angry.this, FImage1.class);
                 startActivity(intent);
             }
         });
-        addlist0.setOnClickListener(new View.OnClickListener() {
+        addlist1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FM0happy.this, FUploadActivityHappy.class);
+                Intent intent = new Intent(FM1Angry.this, FUpload1.class);
                 startActivity(intent);
             }
         });
@@ -47,7 +48,7 @@ public class FM0happy extends AppCompatActivity {
         shareMood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FM0happy.this, FSendEmoji.class);
+                Intent intent = new Intent(FM1Angry.this, FSendEmoji.class);
                 intent.putExtra("user_name", userName);
                 startActivity(intent);
             }

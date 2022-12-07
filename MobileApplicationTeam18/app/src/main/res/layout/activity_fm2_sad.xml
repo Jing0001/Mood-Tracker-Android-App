@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".FM4">
+    tools:context=".FM2Sad">
 
 
     <ImageView
@@ -18,10 +18,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499"
-        app:srcCompat="@drawable/embarrassment" />
+        app:srcCompat="@drawable/sadness" />
 
     <Button
-        android:id="@+id/list4"
+        android:id="@+id/list2"
         android:layout_width="203dp"
         android:layout_height="56dp"
         android:layout_marginTop="132dp"
@@ -31,10 +31,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.795" />
+        app:layout_constraintVertical_bias="0.727" />
 
     <Button
-        android:id="@+id/addlist4"
+        android:id="@+id/addlist2"
         android:layout_width="288dp"
         android:layout_height="50dp"
         android:layout_marginTop="132dp"
@@ -45,19 +45,45 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
+        app:layout_constraintVertical_bias="0.912" />
+
+    <Button
+        android:id="@+id/shareMood"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="share your mood"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list2"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="636dp" />
+
+    <TextView
+        android:id="@+id/userInSad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Name"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/textView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.756" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="152dp"
-        android:text="Today you are EMBARRASSED"
+        android:text="Today you are SAD"
         android:textColor="@color/white"
-        android:textSize="26dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.241" />

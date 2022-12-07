@@ -78,7 +78,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
 //            }
 //        });
 
-            toMoodSummaryBtn.setOnClickListener(new View.OnClickListener() {
+        toMoodSummaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FMoods.this, FMoodSummary.class);
@@ -126,10 +126,8 @@ public class FMoods extends AppCompatActivity implements LocationListener {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Angry");
                 Integer cnt = readCountFromDB("Angry") + 1 ;
                 postToDatabase("Angry", cnt);
-                System.out.println("angry times:"+cnt + "ttttttt");
-//                FCountMoodSelected.moodSelectCount.merge("Angry", 1,  Integer::sum);
-//                databaseReference.child("FUser").child(userName).child("MoodCount").child("Angry").setValue(cnt + 1);
-                Intent intent = new Intent(FMoods.this, FM1.class);
+                Intent intent = new Intent(FMoods.this, FM1Angry.class);
+                intent.putExtra("user_name", userName);
                 startActivity(intent);
             }
         });
@@ -141,7 +139,8 @@ public class FMoods extends AppCompatActivity implements LocationListener {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Sad");
                 Integer cnt = readCountFromDB("Sad") + 1 ;
                 postToDatabase("Sad", cnt);
-                Intent intent = new Intent(FMoods.this, FM2.class);
+                Intent intent = new Intent(FMoods.this, FM2Sad.class);
+                intent.putExtra("user_name", userName);
                 startActivity(intent);
             }
         });
@@ -153,7 +152,8 @@ public class FMoods extends AppCompatActivity implements LocationListener {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Hysterical");
                 Integer cnt = readCountFromDB("Hysterical") + 1 ;
                 postToDatabase("Hysterical", cnt);
-                Intent intent = new Intent(FMoods.this, FM3.class);
+                Intent intent = new Intent(FMoods.this, FM3Hysterical.class);
+                intent.putExtra("user_name", userName);
                 startActivity(intent);
             }
         });
@@ -165,7 +165,8 @@ public class FMoods extends AppCompatActivity implements LocationListener {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Embarrassment");
                 Integer cnt = readCountFromDB("Embarrassment") + 1 ;
                 postToDatabase("Embarrassment", cnt);
-                Intent intent = new Intent(FMoods.this, FM4.class);
+                Intent intent = new Intent(FMoods.this, FM4Embarrassed.class);
+                intent.putExtra("user_name", userName);
                 startActivity(intent);
             }
         });
@@ -177,7 +178,8 @@ public class FMoods extends AppCompatActivity implements LocationListener {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Fatigued");
                 Integer cnt = readCountFromDB("Fatigued") + 1 ;
                 postToDatabase("Fatigued", cnt);
-                Intent intent = new Intent(FMoods.this, FM5.class);
+                Intent intent = new Intent(FMoods.this, FM5Fatigued.class);
+                intent.putExtra("user_name", userName);
                 startActivity(intent);
             }
         });

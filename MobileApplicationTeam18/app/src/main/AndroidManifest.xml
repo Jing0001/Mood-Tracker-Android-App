@@ -99,23 +99,23 @@
             android:name=".FM0happy"
             android:exported="false" />
         <activity
-            android:name=".FM1"
+            android:name=".FM1Angry"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:name=".FM2"
+            android:name=".FM2Sad"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:name=".FM3"
+            android:name=".FM3Hysterical"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:name=".FM4"
+            android:name=".FM4Embarrassed"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:name=".FM5"
+            android:name=".FM5Fatigued"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
