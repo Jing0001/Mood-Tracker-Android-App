@@ -20,20 +20,39 @@
             android:layout_height="0dp"
             android:layout_weight="2">
 
+<!--            <Button-->
+<!--                android:id="@+id/calendar"-->
+<!--                android:layout_width="115dp"-->
+<!--                android:layout_height="66dp"-->
+<!--                android:layout_marginStart="25dp"-->
+<!--                android:layout_marginTop="200dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginBottom="25dp"-->
+<!--                android:text="Track Activities"-->
+<!--                android:textSize="10dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="parent" />--><![CDATA[
+
+            tools:layout_editor_absoluteY="271dp"
+                tools:ignore="MissingConstraints" />
+            ]]>
+
             <Button
-                android:id="@+id/calendar"
+                android:id="@+id/toMoodSummary"
                 android:layout_width="115dp"
                 android:layout_height="66dp"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="200dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="25dp"
-                android:text="Track Activities"
+                android:text="Mood summary"
                 android:textSize="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/feel"
-                app:layout_constraintEnd_toStartOf="@+id/memory"
+                app:layout_constraintEnd_toStartOf="@id/memory"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.872" />
+
 
             <Button
                 android:id="@+id/memory"
@@ -46,7 +65,7 @@
                 android:textSize="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/feel"
                 app:layout_constraintEnd_toStartOf="@+id/fSend"
-                app:layout_constraintStart_toEndOf="@id/calendar"
+                app:layout_constraintStart_toEndOf="@id/toMoodSummary"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
@@ -63,7 +82,6 @@
                 app:layout_constraintStart_toEndOf="@id/memory"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <ImageView
                 android:id="@+id/welcomeUser"
                 android:layout_width="match_parent"
@@ -74,7 +92,7 @@
                 android:text=""
                 app:layout_constraintBottom_toTopOf="@id/feel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
@@ -109,6 +127,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.919" />
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

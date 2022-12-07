@@ -33,13 +33,13 @@ public class FHappyActivityList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         addBtn = (FloatingActionButton) findViewById(R.id.addBtn);
-        addBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(FHappyActivityList.this, FUploadActivityHappy.class);
-                startActivity(intent);
-            }
-        });
+//        addBtn.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(FHappyActivityList.this, FUploadActivityHappy.class);
+//                startActivity(intent);
+//            }
+//        });
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fimage_happylist);

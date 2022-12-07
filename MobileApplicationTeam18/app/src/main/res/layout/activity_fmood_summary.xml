@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".FMoodSummary">
+
+    <TextView
+        android:id="@+id/sumTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="350dp"
+        android:text="Your Mood Summary"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.063"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:layout_width="215dp"
+        android:layout_height="222dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/summary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sumTitle"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/happyCnt"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="HAPPY" />
+
+        <TextView
+            android:id="@+id/sadCnt"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:text="SAD" />
+
+        <TextView
+            android:id="@+id/angryCnt"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:text="ANGRY" />
+
+        <TextView
+            android:id="@+id/embCnt"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:text="EMBARRASSMENT" />
+
+        <TextView
+            android:id="@+id/hystCnt"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:text="HYSTERICAL" />
+
+        <TextView
+            android:id="@+id/fatCnt"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:text="FATIGUED" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="106dp"
+        android:layout_height="217dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/summary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sumTitle"
+        tools:ignore="MissingConstraints,NotSibling">
+
+        <TextView
+            android:id="@+id/happyNumber"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/sadNumber"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/angryNumber"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/embNumber"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/hysNumber"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/fatNumber"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:text="0" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/summary"
+        android:layout_width="345dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="50dp"
+        android:text="Most of the time"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+</androidx.constraintlayout.widget.ConstraintLayout>
