@@ -249,7 +249,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
     private Integer readCountFromDB(String m) {
         databaseReference.child("FUser").child(userName).child("MoodCount").get().addOnCompleteListener((task) -> {
             HashMap<String, Long> countMap = (HashMap) task.getResult().getValue();
-            System.out.println("Wen test: Angry: " + countMap.get("Angry"));
+//            System.out.println("Wen test: Angry: " + countMap.get("Angry"));
 //            System.out.println("Wen test: Happy: " + countMap.get("Happy"));
             if (countMap != null && countMap.containsKey(m)) {
                 System.out.println("arrives here___________");
