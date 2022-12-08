@@ -31,11 +31,6 @@ public class FSignup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fsignup);
 
-//        System.out.println("_ccc______------------------------------");
-//        System.out.println(databaseReference);
-//        System.out.println(databaseReference.child("users").child("51c873632459821d").child("username").setValue("user2"));
-//        databaseReference.child("FUser").child("abc").child("email").setValue("def");
-//
 
         EditText username = (EditText) findViewById(R.id.username);
         EditText email = (EditText) findViewById(R.id.email);
@@ -44,12 +39,7 @@ public class FSignup extends AppCompatActivity {
         MaterialButton regbtn = (MaterialButton) findViewById(R.id.signupbtn);
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
 
-//        loginbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
+
         regbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +76,7 @@ public class FSignup extends AppCompatActivity {
                                 databaseReference.child("FUser").child(nameTxt).child("email").setValue(emailTxt);
                                 databaseReference.child("FUser").child(nameTxt).child("name").setValue(nameTxt);
                                 databaseReference.child("FUser").child(nameTxt).child("password").setValue(passwordTxt);
+                                databaseReference.child("FUser").child(nameTxt).child("mood").setValue("Happy");
                                 FirebaseMessaging.getInstance().getToken()
                                         .addOnCompleteListener(task -> {
                                             if (!task.isSuccessful()) {
@@ -95,6 +86,7 @@ public class FSignup extends AppCompatActivity {
                                             String token = task.getResult();
                                             databaseReference.child("FUser").child(nameTxt).child("token").setValue(token);
                                             databaseReference.child("FUser").child(nameTxt).child("android_id").setValue(android_id);
+
 //                                            System.out.println("token from add for " + nameTxt +  ":" + token);
 //                                            User user = new User(nameTxt, android_id, token);
 //                                            databaseReference.child("FUsers").child(android_id).setValue(user);

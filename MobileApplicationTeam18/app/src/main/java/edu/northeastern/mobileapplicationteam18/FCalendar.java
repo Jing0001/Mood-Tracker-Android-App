@@ -24,12 +24,19 @@ public class FCalendar extends AppCompatActivity implements FCalendarAdapter.OnI
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
 
+    String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fcalendar);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            userName = extras.getString("user_name");
+        }
+
         initWidgets();
         CalendarUtils.selectedDate = LocalDate.now();
         setMonthView();
@@ -75,9 +82,11 @@ public class FCalendar extends AppCompatActivity implements FCalendarAdapter.OnI
         }
     }
 
-    public void weeklyAction(View view)
-    {
-        startActivity(new Intent(this, FCalendarWeekView.class));
+    public void weeklyAction(View view) {
+        Intent intent = new Intent(FCalendar.this, FCalendarWeekView.class);
+        intent.putExtra("user_name", userName);
+        startActivity(intent);
+//        startActivity(new Intent(this, FCalendarWeekView.class));
     }
 }
 

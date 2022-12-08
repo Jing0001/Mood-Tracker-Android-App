@@ -46,11 +46,13 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         getLocation();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fmoods);
+
         Bundle extras = getIntent().getExtras();
         System.out.println("extras in moods: " + extras);
         if (extras != null) {
             userName = extras.getString("user_name");
         }
+
         System.out.println("userName: " + userName);
         currUserNameTV = (TextView) findViewById(R.id.currentUser);
         currUserNameTV.setText(userName);
@@ -68,11 +70,12 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         CardView cardView5 = (CardView) mainGrid.getChildAt(5);
         CardView cardView6 = (CardView) mainGrid.getChildAt(6);
 
-//calendar button (can save activities user did)
+//to calendar button (can save activities user did)
         calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FMoods.this, FCalendar.class);
+                intent.putExtra("user_name", userName);
 //                Intent intent = new Intent(FMoods.this, FCalendarWeekView.class);
                 startActivity(intent);
             }

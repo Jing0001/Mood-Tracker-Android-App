@@ -23,6 +23,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -35,9 +36,10 @@
         <activity
             android:name=".FMoodSummary"
             android:exported="false" />
-        <activity
-            android:name=".FMoodAnalysis"
-            android:exported="false" />
+
+<!--        <activity-->
+<!--            android:name=".FMoodAnalysis"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".FReceiveEmoji"
             android:exported="false" />

@@ -89,8 +89,10 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle extras = getIntent().getExtras();
+        System.out.println("extras in send : " + extras);
         if (extras != null) {
             userName = extras.getString("user_name");
+            System.out.println("username in send : " + userName);
         }
 
         SERVER_KEY = "key=" + getProperties(getApplicationContext()).getProperty("SERVER_KEY");
@@ -100,7 +102,7 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         friends = findViewById(R.id.ffriend_spinner);
         userDB = FirebaseDatabase.getInstance().getReference();
         userNameTV = (TextView) findViewById(R.id.userName);
-        userNameTV.setText(userName);
+//        userNameTV.setText(userName);
         laTVSender = (TextView) findViewById(R.id.txtLa);
         loTVSender = (TextView) findViewById(R.id.txtLo);
         laTVReceiver = (TextView) findViewById(R.id.txtLaReceiver);
@@ -113,7 +115,18 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         initializeSpinner();
 
 
+
+
         getLocation();
+//        received.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(FSendEmoji.this, FReceiveEmoji.class);
+//                intent.putExtra("user_name length", userName.length());
+//                startActivity(intent);
+//            }
+//        });
+
         received.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -277,21 +290,30 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         notificationManager.createNotificationChannel(channel);
     }
 
-    public void onReceivedButtonPressed(View v) {
-        Intent intent = new Intent(this, ReceivedEmojiRecords.class);
-        intent.putExtra("user_name",userName);
-        startActivity(intent);
-    }
+    // received history button
+//    public void onReceivedButtonPressed(View v) {
+////        Intent intent = new Intent(this, ReceivedEmojiRecords.class);
+//        Intent intent = new Intent(FSendEmoji.this, FReceiveEmoji.class);
+//        intent.putExtra("user_name",userName);
+//        System.out.println("user name in press received button: " + userName);
+//        startActivity(intent);
+//    }
+//
+
+
 
     public void onSendButtonPressed(View v) {
         String selectedUsername = friends.getSelectedItem().toString();
+        System.out.println("selected user name in send: " + selectedUsername);
         int selectedEmojiId = getCurrentSelectedId();
         if (selectedEmojiId == -1) {
             Context context = getApplicationContext();
             Toast.makeText(context, "no Emoji is selected for " + selectedUsername, Toast.LENGTH_SHORT).show();
             return;
         }
-        Emoji emoji = new Emoji(selectedEmojiId, userName, selectedUsername, timeNow());
+        // debug received list here
+        Emoji emoji = new Emoji(selectedEmojiId, userName, selectedUsername.split(" ")[0], timeNow());
+//        Emoji emoji = new Emoji(selectedEmojiId, userName, selectedUsername, timeNow());
 
         userDB.child("emojis").child(emoji.getKey()).setValue(emoji).addOnSuccessListener(
                 (task) -> {
@@ -485,10 +507,11 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         String city = getCity(latitude, longitude);
 
         if(city == ""){
-            loTVSender.setText("At a mysterious place");
+//            loTVSender.setText(userName + " is at a mysterious place.");
+            userNameTV.setText(userName + " is at a mysterious place.");
         }
-        loTVSender.setText("At " + city);
-
+        loTVSender.setText("@ " + city);
+        userNameTV.setText(userName );
         postToDatabase(location);
 //        adding user location data to database
     }
@@ -504,11 +527,11 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         userDB.child("FUser").child(userName).child("city").setValue(city);
     }
 
-    private double distance(double laSender, double loSender, double laReceiver, double loReceiver) {
-        float[] results = new float[3];
-        Location.distanceBetween(laSender, loSender,laReceiver,loReceiver, results);
-        return results[0];
-    }
+//    private double distance(double laSender, double loSender, double laReceiver, double loReceiver) {
+//        float[] results = new float[3];
+//        Location.distanceBetween(laSender, loSender,laReceiver,loReceiver, results);
+//        return results[0];
+//    }
 
 
     // get city name by la and lo
