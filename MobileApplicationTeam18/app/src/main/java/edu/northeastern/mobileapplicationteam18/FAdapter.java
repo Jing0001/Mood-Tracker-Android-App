@@ -23,6 +23,7 @@ import java.util.List;
     public class FAdapter extends RecyclerView.Adapter<FAdapter.RecyclerViewHolder>{
         private Context mContext;
         private List<FActivity> factivity;
+        //private OnItemClickListener mListener;
         private OnItemClickListener mListener;
 
         public FAdapter(Context context, List<FActivity> uploads) {

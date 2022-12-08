@@ -56,8 +56,6 @@ public class FUploadActivityHappy extends AppCompatActivity {
 
         mStorageRef = FirebaseStorage.getInstance().getReference("teachers_uploads");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("teachers_uploads");
-        System.out.println("--------------------------------" + mStorageRef);
-        System.out.println("--------------------------------");
 //        System.out.println(typeof(myStorageRef));
 //        databaseReference = FirebaseDatabase.getInstance().getReference("teachers_uploads");
 
