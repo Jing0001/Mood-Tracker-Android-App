@@ -12,37 +12,41 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+//import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FHappyActivityList extends AppCompatActivity {
-    FloatingActionButton addBtn;
     private RecyclerView mRecyclerView;
     private FAdapter mAdapter;
     private DatabaseReference mDatabaseReference;
     private List<FActivity> factivity;
     private ProgressBar mProgressCircle;
+    public FloatingActionButton addBtn2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        addBtn = (FloatingActionButton) findViewById(R.id.addBtn);
-//        addBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(FHappyActivityList.this, FUploadActivityHappy.class);
-//                startActivity(intent);
-//            }
-//        });
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fimage_happylist);
+
+        addBtn2 = findViewById(R.id.addActivityBtn);
+
+        addBtn2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FHappyActivityList.this, FUploadActivityHappy.class);
+                startActivity(intent);
+            }
+        });
+
 
         mRecyclerView = findViewById(R.id.mRecyclerView);
         mRecyclerView.setHasFixedSize(true);
