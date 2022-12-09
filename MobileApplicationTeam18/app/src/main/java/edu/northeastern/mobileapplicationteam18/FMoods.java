@@ -31,6 +31,7 @@ import java.util.Locale;
 
 public class FMoods extends AppCompatActivity implements LocationListener {
     //    public Map<String, Integer> moodSelectCount = new HashMap<String, Integer>();
+
     private LocationManager locationManager;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
     GridLayout mainGrid;
