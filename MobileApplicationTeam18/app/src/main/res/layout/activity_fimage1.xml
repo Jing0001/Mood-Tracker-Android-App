@@ -7,15 +7,15 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 tools:context=".FImage1">
 
-<TextView
-    android:id="@+id/textView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Activity List"
-    android:textAlignment="center"
-    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-    android:textColor="@color/white"
-    android:background="@color/green" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:text="Activities for an angry day"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white" />
 
 <!--    <ProgressBar-->
 <!--        android:id="@+id/myDataLoaderProgressBar"-->
