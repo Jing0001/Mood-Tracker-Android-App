@@ -44,6 +44,27 @@
         android:layout_weight="0.5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/addBtn5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="64dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/add">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addActivityBtn5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:fab_icon="@drawable/newactivity"
+            app:fab_title="AddNewActivity" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </RelativeLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -12,23 +12,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FImage4 extends AppCompatActivity {
+public class FImage4 extends AppCompatActivity implements FAdapter.OnItemClickListener{
     private RecyclerView mRecyclerView;
     private FAdapter mAdapter;
     private DatabaseReference mDatabaseReference;
     private List<FActivity> factivity;
     private ProgressBar mProgressCircle;
     String userName;
+    private FirebaseStorage mStorage;
+    private ValueEventListener mDBListener;
+    public FloatingActionButton addBtn2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,15 @@ public class FImage4 extends AppCompatActivity {
         if (extras != null) {
             userName = extras.getString("user_name");
         }
+        addBtn2 = findViewById(R.id.addActivityBtn4);
+
+        addBtn2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FImage4.this, FUpload4.class);
+                startActivity(intent);
+            }
+        });
 
         mRecyclerView = findViewById(R.id.mRecyclerView4);
         mRecyclerView.setHasFixedSize(true);
@@ -45,17 +61,20 @@ public class FImage4 extends AppCompatActivity {
         mProgressCircle = findViewById(R.id.progress_circle4);
 
         factivity = new ArrayList<>();
+        mStorage = FirebaseStorage.getInstance();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("embarrassed");
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+        mDBListener = mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 factivity.clear();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     FActivity fActivity = postSnapshot.getValue(FActivity.class);
+                    fActivity.setKey(postSnapshot.getKey());
                     factivity.add(fActivity);
                 }
                 mAdapter = new FAdapter(FImage4.this, factivity);
                 mRecyclerView.setAdapter(mAdapter);
+                mAdapter.setOnItemClickListener(FImage4.this);
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
 
@@ -109,4 +128,34 @@ public class FImage4 extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onItemClick(int position) {
+        Toast.makeText(this, "Normal click at position: " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onShowItemClick(int position) {
+        Toast.makeText(this, "whatever click at position: " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDeleteItemClick(int position) {
+        FActivity item = factivity.get(position);
+        String itemKey = item.getKey();
+        StorageReference itemRef = mStorage.getReferenceFromUrl(item.getImageUrl());
+        itemRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                mDatabaseReference.child(itemKey).removeValue();
+                Toast.makeText(FImage4.this, "Activity deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDatabaseReference.removeEventListener(mDBListener);
+    }
+
 }
