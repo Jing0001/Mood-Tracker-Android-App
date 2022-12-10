@@ -1,12 +1,16 @@
 package edu.northeastern.mobileapplicationteam18;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -18,8 +22,9 @@ import java.util.Objects;
 
 public class FReceiveEmoji extends AppCompatActivity {
     private List<Emoji> Emojis;
-    private String myName;
     private DatabaseReference myDataBase;
+    BottomNavigationView bottomNavigationView;
+    private String userName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,12 +34,48 @@ public class FReceiveEmoji extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         System.out.println("extras in received: " + extras);
         if (extras != null) {
-            myName = extras.getString("user_name");
-            System.out.println("my name in extras received :" + myName);  // null ????????
+            userName = extras.getString("user_name");
         }
         myDataBase = FirebaseDatabase.getInstance().getReference();
         updateReceivedRecordsRV();
         readEmojisFromDB();
+
+        // for navigation bar
+        bottomNavigationView=(BottomNavigationView) findViewById(R.id.navigationBar);
+        bottomNavigationView.setSelectedItemId(R.id.messaging);
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.messaging:
+                        return true;
+
+                    case R.id.home:
+                        Intent intent = new Intent(getApplicationContext(),FMoods.class);
+                        intent.putExtra("user_name", userName);
+                        startActivity(intent);
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.tracking:
+                        Intent intentTracking = new Intent(getApplicationContext(),FMoodSummary.class);
+                        intentTracking.putExtra("user_name", userName);
+                        startActivity(intentTracking);
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.moment:
+                        Intent intentMoment = new Intent(getApplicationContext(),FMemory.class);
+                        intentMoment.putExtra("user_name", userName);
+                        startActivity(intentMoment);
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        }); //end of navigation bar
     }
 
     private void updateReceivedRecordsRV() {
@@ -57,9 +98,9 @@ public class FReceiveEmoji extends AppCompatActivity {
                 String sendTime = Objects.requireNonNull(tempMap.get(entryKey)).get("sendTime");
                 String toUser = Objects.requireNonNull(tempMap.get(entryKey)).get("toUser");
                 System.out.println("to user in received before__: " + toUser);
-                System.out.println("myName in received: " + myName);
+                System.out.println("myName in received: " + userName);
 
-                if (toUser != null && toUser.equals(myName)) {
+                if (toUser != null && toUser.equals(userName)) {
                     System.out.println("to user in if__: " + toUser);
                     Emojis.add(new Emoji(Integer.parseInt(id), fromUser, toUser, sendTime));
                 }
