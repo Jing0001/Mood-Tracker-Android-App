@@ -161,9 +161,14 @@ public class FMoodSummary extends AppCompatActivity {
                         Array.set(smallest, 1,  countMap.get(mood) + "");
                     }
                 }
-                sumTV.setText("Most of the time, you felt " + biggest[0] + ", and you barely " + smallest[0]);
+                if (biggest[0] == smallest[0]){
+                    sumTV.setText("Most of the time, you felt " + biggest[0]);
+                }else{
+                    sumTV.setText("Most of the time, you felt " + biggest[0] + ", and you barely " + smallest[0]);
+                }
+
             }else{
-                sumTV.setText("Start to track your mood.");
+                sumTV.setText("Start tracking your mood by selecting your mood on home page.");
             }
         });
     }
