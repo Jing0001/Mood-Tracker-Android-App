@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -32,8 +34,8 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 public class FMemory extends AppCompatActivity {
+    BottomNavigationView bottomNavigationView;
     private static final int PICK_IMAGE_REQUEST = 1;
-
     private Button chooseImageBtn;
     private Button uploadBtn;
     private TextView mTextViewShowUploads;
@@ -46,12 +48,19 @@ public class FMemory extends AppCompatActivity {
 
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
+    private String userName;
 
     private StorageTask mUploadTask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate ( savedInstanceState );
         setContentView ( R.layout.activity_fmemory );
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            userName = extras.getString("user_name");
+        }
+
         chooseImageBtn = findViewById(R.id.button_choose_image);
         uploadBtn = findViewById(R.id.button_upload);
         nameEditText = findViewById(R.id.edit_text_file_name);
@@ -61,6 +70,43 @@ public class FMemory extends AppCompatActivity {
         mTextViewShowUploads = findViewById(R.id.text_view_show_uploads);
         mStorageRef = FirebaseStorage.getInstance().getReference("memory");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("memory");
+
+        // for navigation bar
+        bottomNavigationView=findViewById(R.id.navigationBar);
+        bottomNavigationView.setSelectedItemId(R.id.moment);
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.messaging:
+                        Intent intentMessaging = new Intent(getApplicationContext(),FSendEmoji.class);
+                        intentMessaging.putExtra("user_name", userName);
+                        startActivity(intentMessaging);
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.home:
+                        Intent intent = new Intent(getApplicationContext(),FMoods.class);
+                        intent.putExtra("user_name", userName);
+                        startActivity(intent);
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.tracking:
+                        Intent intentTracking = new Intent(getApplicationContext(),FMoodSummary.class);
+                        intentTracking.putExtra("user_name", userName);
+                        startActivity(intentTracking);
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.moment:
+                        return true;
+                }
+                return false;
+            }
+        });
 
         chooseImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override

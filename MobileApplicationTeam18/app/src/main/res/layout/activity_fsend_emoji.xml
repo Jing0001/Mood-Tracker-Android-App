@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    tools:context=".FSendEmoji">
+
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".FSendEmoji">
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/txtLo2"-->
-        <!--            android:layout_width="112dp"-->
-        <!--            android:layout_height="45dp"-->
-        <!--            android:text="Longitude"-->
-        <!--            android:textColor="@color/black"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintHorizontal_bias="0.02"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            app:layout_constraintVertical_bias="0.161" />-->
-
 
         <TextView
             android:id="@+id/txtLa"
@@ -200,11 +192,11 @@
             android:id="@+id/sendButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="24dp"
             android:onClick="onSendButtonPressed"
             android:text="Send Message"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.479"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emojiNaughtySentCountTV" />
 
@@ -212,10 +204,11 @@
             android:id="@+id/receivedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:onClick="onReceivedButtonPressed"
             android:text="Received History "
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sendButton" />
 
@@ -279,3 +272,16 @@
             app:layout_constraintTop_toBottomOf="@+id/emojiNaughty" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        app:itemBackground="@color/common_google_signin_btn_text_dark_default"
+        app:itemTextColor="#ffffff"
+        app:menu="@menu/bottom_nav_menu"
+        />
+
+</RelativeLayout>

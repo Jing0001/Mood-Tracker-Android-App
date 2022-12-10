@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".FMemory">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        tools:context=".FMemory">
     <Button
         android:id="@+id/button_choose_image"
         android:layout_width="wrap_content"
@@ -29,26 +33,27 @@
         android:layout_below="@id/edit_text_file_name"
         android:layout_marginTop="16dp" />
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button_upload"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="16dp" />
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button_upload"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="77dp" />
 
-    <Button
-        android:id="@+id/button_upload"
-        android:layout_width="118dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="2dp"
-        android:layout_marginBottom="13dp"
-        android:text="Upload"
-        android:textSize="19dp" />
+        <Button
+            android:id="@+id/button_upload"
+            android:layout_width="118dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="2dp"
+            android:layout_marginBottom="54dp"
+            android:text="Upload"
+            android:textSize="19dp" />
 
-    <TextView
+        <TextView
         android:id="@+id/text_view_show_uploads"
         android:layout_width="121dp"
         android:layout_height="wrap_content"
@@ -64,5 +69,18 @@
         android:textColor="@color/white"
         android:textSize="19dp"
         android:textStyle="bold" />
+
+</RelativeLayout>
+
+<com.google.android.material.bottomnavigation.BottomNavigationView
+android:id="@+id/navigationBar"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+android:layout_gravity="bottom"
+app:itemBackground="@color/common_google_signin_btn_text_dark_default"
+app:itemTextColor="#ffffff"
+app:menu="@menu/bottom_nav_menu"
+    />
 
 </RelativeLayout>

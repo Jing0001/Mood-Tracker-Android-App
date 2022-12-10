@@ -14,6 +14,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,12 +54,13 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
+import edu.northeastern.mobileapplicationteam18.databinding.ActivityFmoodsBinding;
 import edu.northeastern.mobileapplicationteam18.databinding.ActivityFsendEmojiBinding;
 
 public class FSendEmoji extends AppCompatActivity implements LocationListener {
+    BottomNavigationView bottomNavigationView;
     ActivityFsendEmojiBinding binding;
     private DatabaseReference userDB;
-
 
     private FirebaseDatabase firebaseDatabase;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
@@ -84,6 +87,7 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
     private Location startLocation;
     private LocationManager locationManager;
     private DatabaseReference ref;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,18 +118,45 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         readDataFromDB();
         initializeSpinner();
 
+        // for navigation bar
+        bottomNavigationView=(BottomNavigationView) findViewById(R.id.navigationBar);
+        bottomNavigationView.setSelectedItemId(R.id.messaging);
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+                switch(item.getItemId())
+                {
+                    case R.id.messaging:
+                        return true;
+
+                    case R.id.home:
+                        Intent intent = new Intent(getApplicationContext(),FMoods.class);
+                        intent.putExtra("user_name", userName);
+                        startActivity(intent);
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.tracking:
+                        Intent intentTracking = new Intent(getApplicationContext(),FMoodSummary.class);
+                        intentTracking.putExtra("user_name", userName);
+                        startActivity(intentTracking);
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.moment:
+                        Intent intentMoment = new Intent(getApplicationContext(),FMemory.class);
+                        intentMoment.putExtra("user_name", userName);
+                        startActivity(intentMoment);
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        }); //end of navigation bar
 
 
         getLocation();
-//        received.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(FSendEmoji.this, FReceiveEmoji.class);
-//                intent.putExtra("user_name length", userName.length());
-//                startActivity(intent);
-//            }
-//        });
 
         received.setOnClickListener(new View.OnClickListener() {
             @Override

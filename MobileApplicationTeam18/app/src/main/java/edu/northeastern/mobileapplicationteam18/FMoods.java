@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.Context;
@@ -15,12 +18,14 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,8 +34,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import edu.northeastern.mobileapplicationteam18.databinding.ActivityFmoodsBinding;
+
 public class FMoods extends AppCompatActivity implements LocationListener {
     //    public Map<String, Integer> moodSelectCount = new HashMap<String, Integer>();
+
+    ActivityFmoodsBinding binding;
+    BottomNavigationView bottomNavigationView;
 
     private LocationManager locationManager;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
@@ -43,8 +53,6 @@ public class FMoods extends AppCompatActivity implements LocationListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        getLocation();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fmoods);
 
@@ -54,7 +62,67 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             userName = extras.getString("user_name");
         }
 
-        System.out.println("userName: " + userName);
+        // for navigation bar
+//        BottomNavigationView bottomNavigationView=(BottomNavigationView) findViewById(R.id.navigationBar);
+        bottomNavigationView=(BottomNavigationView) findViewById(R.id.navigationBar);
+        // Set Home selected
+        bottomNavigationView.setSelectedItemId(R.id.home);
+        // Perform item selected listener
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.messaging:
+                        Intent intent = new Intent(getApplicationContext(),FSendEmoji.class);
+                        intent.putExtra("user_name", userName);
+                        startActivity(intent);
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.home:
+                        return true;
+
+                    case R.id.tracking:
+                        Intent intentTracking = new Intent(getApplicationContext(),FMoodSummary.class);
+                        intentTracking.putExtra("user_name", userName);
+                        startActivity(intentTracking);
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.moment:
+                        Intent intentMoment = new Intent(getApplicationContext(),FMemory.class);
+                        intentMoment.putExtra("user_name", userName);
+                        startActivity(intentMoment);
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+//        binding = ActivityFmoodsBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
+//        binding.navigationBar.setOnItemSelectedListener(item -> {
+//            switch(item.getItemId()){
+//                case R.id.home:
+//                    replaceFragment(new Fmoods());
+//                    break;
+//                case R.id.messaging:
+//                    replaceFragment(new FSendEmoji());
+//                    break;
+//                case R.id.moment:
+//                    break;
+//                case R.id.tracking:
+//                    break;
+//            }
+//
+//            return true;
+//
+//        });
+
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        getLocation();
         currUserNameTV = (TextView) findViewById(R.id.currentUser);
         currUserNameTV.setText(userName);
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
@@ -187,7 +255,16 @@ public class FMoods extends AppCompatActivity implements LocationListener {
                 startActivity(intent);
             }
         });
+    }  // end of onCreate
+
+    // for navigation bar
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.scrollView,fragment);
+        fragmentTransaction.commit();
     }
+
 
     @Override
     public void onBackPressed() {

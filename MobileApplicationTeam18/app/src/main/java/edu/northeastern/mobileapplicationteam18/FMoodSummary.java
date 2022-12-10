@@ -1,10 +1,14 @@
 package edu.northeastern.mobileapplicationteam18;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 public class FMoodSummary extends AppCompatActivity {
+    BottomNavigationView bottomNavigationView;
     String userName;
     private TextView happyNumTV;
     private TextView sadNumTV;
@@ -39,6 +44,12 @@ public class FMoodSummary extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fmood_summary);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            userName = extras.getString("user_name");
+        }
+
         happyNumTV = (TextView) findViewById(R.id.happyNumber);
         sadNumTV = (TextView) findViewById(R.id.sadNumber);
         angryNumTV = (TextView) findViewById(R.id.angryNumber);
@@ -47,15 +58,48 @@ public class FMoodSummary extends AppCompatActivity {
         fatiNumTV = (TextView) findViewById(R.id.fatNumber);
 
         sumTV = (TextView) findViewById(R.id.summaryTV);
-
-        Bundle extras = getIntent().getExtras();
-        System.out.println("extras in moods: " + extras);
-        if (extras != null) {
-            userName = extras.getString("user_name");
-        }
         readCountFromDB();
         generateSummary();
-    }
+
+        // for navigation bar
+        bottomNavigationView=findViewById(R.id.navigationBar);
+        bottomNavigationView.setSelectedItemId(R.id.tracking);
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.messaging:
+                        Intent intentMessaging = new Intent(getApplicationContext(),FSendEmoji.class);
+                        intentMessaging.putExtra("user_name", userName);
+                        startActivity(intentMessaging);
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.home:
+                        Intent intent = new Intent(getApplicationContext(),FMoods.class);
+                        intent.putExtra("user_name", userName);
+                        startActivity(intent);
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.tracking:
+                        return true;
+
+                    case R.id.moment:
+                        Intent intentMoment = new Intent(getApplicationContext(),FMemory.class);
+                        intentMoment.putExtra("user_name", userName);
+                        startActivity(intentMoment);
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+
+    }// end of on create
 
     // read mood counts from DB
 
