@@ -137,11 +137,6 @@ public class FImage1 extends AppCompatActivity implements FAdapter.OnItemClickLi
     }
 
     @Override
-    public void onShowItemClick(int position) {
-        Toast.makeText(this, "whatever click at position: " + position, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void onDeleteItemClick(int position) {
         FActivity item = factivity.get(position);
         String itemKey = item.getKey();

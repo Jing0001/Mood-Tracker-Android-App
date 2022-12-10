@@ -133,10 +133,6 @@ public class FImage4 extends AppCompatActivity implements FAdapter.OnItemClickLi
         Toast.makeText(this, "Normal click at position: " + position, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onShowItemClick(int position) {
-        Toast.makeText(this, "whatever click at position: " + position, Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void onDeleteItemClick(int position) {
