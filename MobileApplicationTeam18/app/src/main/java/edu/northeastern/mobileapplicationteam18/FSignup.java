@@ -31,7 +31,6 @@ public class FSignup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fsignup);
 
-
         EditText username = (EditText) findViewById(R.id.username);
         EditText email = (EditText) findViewById(R.id.email);
         EditText password = (EditText) findViewById(R.id.password);
@@ -49,6 +48,7 @@ public class FSignup extends AppCompatActivity {
                 String emailTxt = email.getText().toString();
                 String passwordTxt = password.getText().toString();
                 String repasswordTxt = repassword.getText().toString();
+
                 @SuppressLint("HardwareIds") String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
                 // check if user fill all the fields before sending data to firebase
@@ -77,6 +77,12 @@ public class FSignup extends AppCompatActivity {
                                 databaseReference.child("FUser").child(nameTxt).child("name").setValue(nameTxt);
                                 databaseReference.child("FUser").child(nameTxt).child("password").setValue(passwordTxt);
                                 databaseReference.child("FUser").child(nameTxt).child("mood").setValue("Happy");
+                                databaseReference.child("FUser").child(nameTxt).child("MoodCount").child("Angry").setValue(0);
+                                databaseReference.child("FUser").child(nameTxt).child("MoodCount").child("Embarrassment").setValue(0);
+                                databaseReference.child("FUser").child(nameTxt).child("MoodCount").child("Fatigued").setValue(0);
+                                databaseReference.child("FUser").child(nameTxt).child("MoodCount").child("Happy").setValue(0);
+                                databaseReference.child("FUser").child(nameTxt).child("MoodCount").child("Hysterical").setValue(0);
+                                databaseReference.child("FUser").child(nameTxt).child("MoodCount").child("Sad").setValue(0);
                                 FirebaseMessaging.getInstance().getToken()
                                         .addOnCompleteListener(task -> {
                                             if (!task.isSuccessful()) {
@@ -86,10 +92,6 @@ public class FSignup extends AppCompatActivity {
                                             String token = task.getResult();
                                             databaseReference.child("FUser").child(nameTxt).child("token").setValue(token);
                                             databaseReference.child("FUser").child(nameTxt).child("android_id").setValue(android_id);
-
-//                                            System.out.println("token from add for " + nameTxt +  ":" + token);
-//                                            User user = new User(nameTxt, android_id, token);
-//                                            databaseReference.child("FUsers").child(android_id).setValue(user);
                                         });
 
                                 Toast.makeText(FSignup.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
