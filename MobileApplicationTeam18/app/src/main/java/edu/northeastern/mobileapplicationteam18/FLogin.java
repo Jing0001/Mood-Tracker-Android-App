@@ -78,6 +78,8 @@ public class FLogin extends AppCompatActivity {
                 }
         }});
 
+
+
 //        regbtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -88,5 +90,12 @@ public class FLogin extends AppCompatActivity {
 //        });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(FLogin.this, Mood.class);
+        startActivity(intent);
     }
 }

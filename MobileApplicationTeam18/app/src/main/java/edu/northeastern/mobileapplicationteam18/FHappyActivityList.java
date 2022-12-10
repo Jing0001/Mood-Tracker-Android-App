@@ -72,6 +72,7 @@ public class FHappyActivityList extends AppCompatActivity implements FAdapter.On
         mDBListener = mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                factivity.clear();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     FActivity fActivity = postSnapshot.getValue(FActivity.class);
                     fActivity.setKey(postSnapshot.getKey());

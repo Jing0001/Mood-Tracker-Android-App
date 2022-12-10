@@ -52,6 +52,7 @@ public class FImage1 extends AppCompatActivity {
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                factivity.clear();
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
                     FActivity fActivity = postSnapshot.getValue(FActivity.class);
                     factivity.add(fActivity);

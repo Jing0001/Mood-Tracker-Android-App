@@ -209,6 +209,9 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         count++;
         if (count == 2) {
             super.onBackPressed();
+            Intent intent = new Intent(FMoods.this, Mood.class);
+            startActivity(intent);
+
         } else {
             Toast.makeText(getBaseContext(), "Click again to sign out", Toast.LENGTH_SHORT).show();
         }

@@ -110,6 +110,12 @@ public class FSignup extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(FSignup.this, Mood.class);
+        startActivity(intent);
+    }
 
 
 }
