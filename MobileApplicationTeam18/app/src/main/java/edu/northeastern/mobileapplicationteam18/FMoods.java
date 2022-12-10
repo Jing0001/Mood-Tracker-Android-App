@@ -65,9 +65,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         // for navigation bar
 //        BottomNavigationView bottomNavigationView=(BottomNavigationView) findViewById(R.id.navigationBar);
         bottomNavigationView=(BottomNavigationView) findViewById(R.id.navigationBar);
-        // Set Home selected
         bottomNavigationView.setSelectedItemId(R.id.home);
-        // Perform item selected listener
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -120,6 +118,8 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Happy");
+                System.out.println("happy count: " + readCountFromDB("Happy"));
+                System.out.println("happy count type:" +  readCountFromDB("Happy").getClass());
                 Integer cnt = readCountFromDB("Happy") + 1 ;
                 postToDatabase("Happy", cnt);
                 Intent intent = new Intent(FMoods.this, FM0happy.class);
@@ -186,7 +186,9 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Fatigued");
+                System.out.println("fatigue count：" + readCountFromDB("Fatigued"));
                 Integer cnt = readCountFromDB("Fatigued") + 1 ;
+                System.out.println("cnt after adding: " + cnt);
                 postToDatabase("Fatigued", cnt);
                 Intent intent = new Intent(FMoods.this, FM5Fatigued.class);
                 intent.putExtra("user_name", userName);
@@ -265,25 +267,30 @@ public class FMoods extends AppCompatActivity implements LocationListener {
     }
 
     // read mood counts from DB
-    private Integer readCountFromDB(String m) {
+    private Integer readCountFromDB(String mood) {
         databaseReference.child("FUser").child(userName).child("MoodCount").get().addOnCompleteListener((task) -> {
             HashMap<String, Long> countMap = (HashMap) task.getResult().getValue();
-//            System.out.println("Wen test: Angry: " + countMap.get("Angry"));
-//            System.out.println("Wen test: Happy: " + countMap.get("Happy"));
-            if (countMap != null && countMap.containsKey(m)) {
-                System.out.println("arrives here___________");
-                System.out.println(countMap.get(m).toString() +"type___________");
-             cntMood = Math.toIntExact(countMap.get(m));
-            } else {
-                cntMood = 0;
-            }
+            System.out.println("Wen test: Angry: " + countMap.get("Angry"));
+            System.out.println("Wen test: Embarrassed: " + countMap.get("Embarrassment"));
+            System.out.println("Wen test: Fatigued: " + countMap.get("Fatigued"));
+            System.out.println("Wen test: Happy: " + countMap.get("Happy"));
+            System.out.println("Wen test: Hysterical: " + countMap.get("Hysterical"));
+            System.out.println("Wen test: Sad: " + countMap.get("Sad"));
+            cntMood = Math.toIntExact(countMap.get(mood));
+            System.out.println("cntMood: " + cntMood);
+//            if (countMap != null && countMap.containsKey(mood)) {
+//            if(countMap != null){
+//             cntMood = Math.toIntExact(countMap.get(mood));
+//            } else {
+//                cntMood = 0;
+
         });
         return cntMood;
     }
 
     // write mood count to DB
-    public void postToDatabase(String m, Integer cnt) {
-        databaseReference.child("FUser").child(userName).child("MoodCount").child(m).setValue(cnt);
+    public void postToDatabase(String mood, Integer cnt) {
+        databaseReference.child("FUser").child(userName).child("MoodCount").child(mood).setValue(cnt);
     }
 }
 
