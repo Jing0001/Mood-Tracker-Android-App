@@ -101,36 +101,16 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             }
         });
 
-//        binding = ActivityFmoodsBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-//        binding.navigationBar.setOnItemSelectedListener(item -> {
-//            switch(item.getItemId()){
-//                case R.id.home:
-//                    replaceFragment(new Fmoods());
-//                    break;
-//                case R.id.messaging:
-//                    replaceFragment(new FSendEmoji());
-//                    break;
-//                case R.id.moment:
-//                    break;
-//                case R.id.tracking:
-//                    break;
-//            }
-//
-//            return true;
-//
-//        });
-
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         getLocation();
         currUserNameTV = (TextView) findViewById(R.id.currentUser);
         currUserNameTV.setText(userName);
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
 
-        Button calendar = (Button) findViewById(R.id.calendar);
-        Button toMoodSummaryBtn = (Button) findViewById(R.id.toMoodSummary);
-        Button memory = (Button) findViewById(R.id.memory);
-        Button send = (Button) findViewById(R.id.fSend);
+//        Button calendar = (Button) findViewById(R.id.calendar);
+//        Button toMoodSummaryBtn = (Button) findViewById(R.id.toMoodSummary);
+//        Button memory = (Button) findViewById(R.id.memory);
+//        Button send = (Button) findViewById(R.id.fSend);
         CardView cardView0 = (CardView) mainGrid.getChildAt(0);
         CardView cardView1 = (CardView) mainGrid.getChildAt(1);
         CardView cardView2 = (CardView) mainGrid.getChildAt(2);
@@ -140,42 +120,42 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         CardView cardView6 = (CardView) mainGrid.getChildAt(6);
 
 //to calendar button (can save activities user did)
-        calendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(FMoods.this, FCalendar.class);
-                intent.putExtra("user_name", userName);
-//                Intent intent = new Intent(FMoods.this, FCalendarWeekView.class);
-                startActivity(intent);
-            }
-        });
+//        calendar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(FMoods.this, FCalendar.class);
+//                intent.putExtra("user_name", userName);
+////                Intent intent = new Intent(FMoods.this, FCalendarWeekView.class);
+//                startActivity(intent);
+//            }
+//        });
 //to summary button(can check mood summary)
-        toMoodSummaryBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(FMoods.this, FMoodSummary.class);
-                intent.putExtra("user_name", userName);
-                startActivity(intent);
-            }
-        });
+//        toMoodSummaryBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(FMoods.this, FMoodSummary.class);
+//                intent.putExtra("user_name", userName);
+//                startActivity(intent);
+//            }
+//        });
 // record user's moment button (can save images)
-        memory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(FMoods.this, FMemory.class);
-                intent.putExtra("user_name", userName);
-                startActivity(intent);
-            }
-        });
+//        memory.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(FMoods.this, FMemory.class);
+//                intent.putExtra("user_name", userName);
+//                startActivity(intent);
+//            }
+//        });
 // can share mood with friend vid sending emojis
-        send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(FMoods.this, FSendEmoji.class);
-                intent.putExtra("user_name", userName);
-                startActivity(intent);
-            }
-        });
+//        send.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(FMoods.this, FSendEmoji.class);
+//                intent.putExtra("user_name", userName);
+//                startActivity(intent);
+//            }
+//        });
 
         // 0 - press happy mood
         cardView0.setOnClickListener(new View.OnClickListener() {

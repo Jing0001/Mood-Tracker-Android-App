@@ -27,75 +27,73 @@
             android:id="@+id/relativeLayout2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2">
+            android:layout_weight="1.5">
 
 
-            <Button
-                android:id="@+id/calendar"
-                android:layout_width="88dp"
-                android:layout_height="46dp"
-                android:layout_marginTop="200dp"
-                android:layout_marginBottom="25dp"
-                android:text="Track Activities"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toTopOf="@id/feel"
-                app:layout_constraintEnd_toStartOf="@id/fSend"
-                app:layout_constraintStart_toEndOf="@id/memory"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.966"
-                tools:ignore="MissingConstraints" />
+            <!--            <Button-->
+            <!--                android:id="@+id/calendar"-->
+            <!--                android:layout_width="88dp"-->
+            <!--                android:layout_height="46dp"-->
+            <!--                android:layout_marginTop="200dp"-->
+            <!--                android:layout_marginBottom="25dp"-->
+            <!--                android:text="Track Activities"-->
+            <!--                android:textSize="10dp"-->
+            <!--                app:layout_constraintBottom_toTopOf="@id/feel"-->
+            <!--                app:layout_constraintEnd_toStartOf="@id/fSend"-->
+            <!--                app:layout_constraintStart_toEndOf="@id/memory"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                app:layout_constraintVertical_bias="0.966"-->
+            <!--                tools:ignore="MissingConstraints" />-->
 
-            <Button
-                android:id="@+id/toMoodSummary"
-                android:layout_width="88dp"
-                android:layout_height="46dp"
-                android:layout_marginStart="10dp"
-                android:text="Mood summary"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/feel"
-                app:layout_constraintEnd_toStartOf="@id/memory"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.898" />
+            <!--            <Button-->
+            <!--                android:id="@+id/toMoodSummary"-->
+            <!--                android:layout_width="88dp"-->
+            <!--                android:layout_height="46dp"-->
+            <!--                android:layout_marginStart="10dp"-->
+            <!--                android:text="Mood summary"-->
+            <!--                android:textSize="10dp"-->
+            <!--                app:layout_constraintBottom_toTopOf="@+id/feel"-->
+            <!--                app:layout_constraintEnd_toStartOf="@id/memory"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                app:layout_constraintVertical_bias="0.898" />-->
 
-            <Button
-                android:id="@+id/memory"
-                android:layout_width="88dp"
-                android:layout_height="46dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="200dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="25dp"
-                android:text="Record Moments"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/feel"
-                app:layout_constraintEnd_toStartOf="@+id/calendar"
-                app:layout_constraintStart_toEndOf="@id/toMoodSummary"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.966" />
+            <!--            <Button-->
+            <!--                android:id="@+id/memory"-->
+            <!--                android:layout_width="88dp"-->
+            <!--                android:layout_height="46dp"-->
+            <!--                android:layout_marginStart="10dp"-->
+            <!--                android:layout_marginTop="200dp"-->
+            <!--                android:layout_marginEnd="10dp"-->
+            <!--                android:layout_marginBottom="25dp"-->
+            <!--                android:text="Record Moments"-->
+            <!--                android:textSize="10dp"-->
+            <!--                app:layout_constraintBottom_toTopOf="@+id/feel"-->
+            <!--                app:layout_constraintEnd_toStartOf="@+id/calendar"-->
+            <!--                app:layout_constraintStart_toEndOf="@id/toMoodSummary"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                app:layout_constraintVertical_bias="0.966" />-->
 
-            <Button
-                android:id="@+id/fSend"
-                android:layout_width="88dp"
-                android:layout_height="46dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="200dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="25dp"
-                android:text="Send Messages"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/feel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/calendar"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+            <!--            <Button-->
+            <!--                android:id="@+id/fSend"-->
+            <!--                android:layout_width="88dp"-->
+            <!--                android:layout_height="46dp"-->
+            <!--                android:layout_marginStart="10dp"-->
+            <!--                android:layout_marginTop="200dp"-->
+            <!--                android:layout_marginEnd="10dp"-->
+            <!--                android:layout_marginBottom="25dp"-->
+            <!--                android:text="Send Messages"-->
+            <!--                android:textSize="10dp"-->
+            <!--                app:layout_constraintBottom_toTopOf="@+id/feel"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toEndOf="@id/calendar"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                app:layout_constraintVertical_bias="1.0" />-->
 
             <ImageView
                 android:id="@+id/welcomeUser"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginTop="-50dp"
-                android:layout_marginBottom="25dp"
+                android:layout_height="250dp"
                 android:background="@drawable/welcome"
                 android:text=""
                 app:layout_constraintBottom_toTopOf="@id/feel"
@@ -103,14 +101,14 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/feel"
                 android:layout_width="wrap_content"
                 android:layout_height="59dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="200dp"
                 android:layout_marginEnd="20dp"
                 android:text="How do you feel today?"
                 android:textColor="@android:color/white"
@@ -126,15 +124,15 @@
                 android:id="@+id/currentUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="160dp"
                 android:text="User Name"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                app:layout_constraintBottom_toTopOf="@id/memory"
+                app:layout_constraintBottom_toTopOf="@id/feel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.919" />
+                app:layout_constraintVertical_bias="0.0" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -152,7 +150,6 @@
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-
 
 
             <!-- Row 1 -->

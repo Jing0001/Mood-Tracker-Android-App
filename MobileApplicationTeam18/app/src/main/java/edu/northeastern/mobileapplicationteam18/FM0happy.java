@@ -26,7 +26,7 @@ public class FM0happy extends AppCompatActivity {
         userInHappyTV.setText(userName);
 
         Button getlist0 = (Button) findViewById(R.id.list0);
-        Button addlist0 = (Button) findViewById(R.id.addlist0);
+//        Button addlist0 = (Button) findViewById(R.id.addlist0);
         Button shareMood = (Button) findViewById(R.id.shareMood);
 
         getlist0.setOnClickListener(new View.OnClickListener() {
@@ -36,13 +36,13 @@ public class FM0happy extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        addlist0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(FM0happy.this, FUploadActivityHappy.class);
-                startActivity(intent);
-            }
-        });
+//        addlist0.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(FM0happy.this, FUploadActivityHappy.class);
+//                startActivity(intent);
+//            }
+//        });
 
         shareMood.setOnClickListener(new View.OnClickListener() {
             @Override
