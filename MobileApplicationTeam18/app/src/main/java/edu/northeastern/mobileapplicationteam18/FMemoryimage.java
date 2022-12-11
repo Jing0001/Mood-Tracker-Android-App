@@ -74,7 +74,7 @@ public class FMemoryimage extends AppCompatActivity {
             userName = extras.getString("user_name");
         }
         bottomNavigationView=(BottomNavigationView) findViewById(R.id.navigationBar);
-        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setSelectedItemId(R.id.moment);
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -89,6 +89,10 @@ public class FMemoryimage extends AppCompatActivity {
                         return true;
 
                     case R.id.home:
+                        Intent intent1 = new Intent(getApplicationContext(),FMoods.class);
+                        intent1.putExtra("user_name", userName);
+                        startActivity(intent1);
+                        overridePendingTransition(0,0);
                         return true;
 
                     case R.id.tracking:
