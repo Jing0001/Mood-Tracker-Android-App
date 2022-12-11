@@ -32,7 +32,6 @@ public class FM3Hysterical extends AppCompatActivity {
 
 
         Button getlist3 = (Button) findViewById(R.id.list3);
-//        Button addlist3 = (Button) findViewById(R.id.addlist3);
         getlist3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,13 +40,6 @@ public class FM3Hysterical extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        addlist3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(FM3Hysterical.this, FUpload3.class);
-//                startActivity(intent);
-//            }
-//        });
 
         shareMood.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -41,9 +41,8 @@ import java.util.Locale;
 import edu.northeastern.mobileapplicationteam18.databinding.ActivityFmoodsBinding;
 
 public class FMoods extends AppCompatActivity implements LocationListener {
-    //    public Map<String, Integer> moodSelectCount = new HashMap<String, Integer>();
-
     ActivityFmoodsBinding binding;
+    String userName;
     BottomNavigationView bottomNavigationView;
 
     private LocationManager locationManager;
@@ -51,7 +50,6 @@ public class FMoods extends AppCompatActivity implements LocationListener {
     GridLayout mainGrid;
     Integer count = 0;
     Integer cntMood = 0;
-    String userName;
     private TextView currUserNameTV;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -252,7 +250,6 @@ public class FMoods extends AppCompatActivity implements LocationListener {
                     }
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -262,43 +259,12 @@ public class FMoods extends AppCompatActivity implements LocationListener {
     // update mood counts from DB
     private void updateCountFromDB(String mood) {
         databaseReference.child("FUser").child(userName).child("MoodCount").get().addOnCompleteListener((task) -> {
-            System.out.println("Start read data from DB....");
             HashMap<String, Long> localCountMap = (HashMap<String, Long>) task.getResult().getValue();
-            System.out.println("Wen test: Angry: " + localCountMap.getOrDefault("Angry", 0L));
-            System.out.println("Wen test: Embarrassed: " + localCountMap.getOrDefault("Embarrassment", 0L));
-            System.out.println("Wen test: Fatigued: " + localCountMap.getOrDefault("Fatigued", 0L));
-            System.out.println("Wen test: Happy: " + localCountMap.getOrDefault("Happy", 0L));
-            System.out.println("Wen test: Hysterical: " + localCountMap.getOrDefault("Hysterical", 0L));
-            System.out.println("Wen test: Sad: " + localCountMap.getOrDefault("Sad", 0L));
-            System.out.println("cntMood: " + Math.toIntExact(localCountMap.get(mood)));
             Integer cnt = Math.toIntExact(localCountMap.get(mood));
-            // countMap = (HashMap) task.getResult().getValue();
-            System.out.println("Update count....");
             databaseReference.child("FUser").child(userName).child("MoodCount").child(mood).setValue(cnt + 1);
         });
     }
 
-    // write mood count to DB
-//    public void postToDatabase(String mood, Integer cnt) {
-//        // databaseReference.child("FUser").child(userName).child("MoodCount").child(mood).setValue(cnt);
-//        DatabaseReference dataRef = databaseReference.child("FUser").child(userName).child("MoodCount").child(mood);
-//        dataRef.setValue(cnt, new DatabaseReference.CompletionListener() {
-//            @Override
-//            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-//                if (databaseError != null) {
-//                    System.out.println("Data could not be saved " + databaseError.getMessage());
-//                } else {
-//                    System.out.println("Data saved successfully.");
-//                }
-//            }
-//        });
-//    }
-
-//    public interface OnGetDataListener {
-//        void onSuccess(DataSnapshot dataSnapshot);
-////        void onStart();
-////        void onFailure();
-//    }
 }
 
 

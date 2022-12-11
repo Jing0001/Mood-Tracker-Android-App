@@ -34,11 +34,6 @@ public class FMemoryadapter extends RecyclerView.Adapter<FMemoryadapter.ImageVie
                 .load(uploadCurrent.getImageUrl())
                 .placeholder(R.drawable.placeholder)
                 .into(holder.imageView);
-//        Picasso.with(mContext)
-//                .load(uploadCurrent.getImageUrl())
-//                .fit()
-//                .centerCrop()
-//                .into(holder.imageView);
     }
 
     @Override

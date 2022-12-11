@@ -234,9 +234,6 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
                     userNames);
             friends.setAdapter(adapter);
             String selectedUsername = friends.getSelectedItem().toString();
-            System.out.println("___________________________________________");
-            System.out.println("selectedUser:" + selectedUsername);
-            System.out.println("____________________________________________");
             userDB.child("FUser").child(selectedUsername).child("mood").addValueEventListener(new ValueEventListener(){
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -252,40 +249,6 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
             });
-
-            // get receiver's location
-//            userDB.child("FUser").child(selectedUsername).child("location").child("latitude").addValueEventListener(new ValueEventListener(){
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    if (snapshot.getValue() == null){
-//                        laTVReceiver.setText("Unavailable");
-//                    } else{
-//                        laReceiver = snapshot.getValue().toString();
-//                        laTVReceiver.setText("latitude: "+laReceiver);
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//                }
-//            });
-//
-//            userDB.child("FUser").child(selectedUsername).child("location").child("longitude").addValueEventListener(new ValueEventListener(){
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    if (snapshot.getValue() == null){
-//                        loTVReceiver.setText("Unavailable");
-//                    } else{
-//                        loReceiver = snapshot.getValue().toString();
-//                        System.out.println("=================long=================");
-//                        System.out.println("longRe:" + loReceiver);
-//                        loTVReceiver.setText("longitude: "+loReceiver);
-//                    }
-//                }
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//                }
-//            });
 
         });
     }  // end of spinner
@@ -321,18 +284,6 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         notificationManager.createNotificationChannel(channel);
     }
 
-    // received history button
-//    public void onReceivedButtonPressed(View v) {
-////        Intent intent = new Intent(this, ReceivedEmojiRecords.class);
-//        Intent intent = new Intent(FSendEmoji.this, FReceiveEmoji.class);
-//        intent.putExtra("user_name",userName);
-//        System.out.println("user name in press received button: " + userName);
-//        startActivity(intent);
-//    }
-//
-
-
-
     public void onSendButtonPressed(View v) {
         String selectedUsername = friends.getSelectedItem().toString();
         System.out.println("selected user name in send: " + selectedUsername);
@@ -344,8 +295,6 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         }
         // debug received list here
         Emoji emoji = new Emoji(selectedEmojiId, userName, selectedUsername.split(" ")[0], timeNow());
-//        Emoji emoji = new Emoji(selectedEmojiId, userName, selectedUsername, timeNow());
-
         userDB.child("emojis").child(emoji.getKey()).setValue(emoji).addOnSuccessListener(
                 (task) -> {
                     Context context_success = getApplicationContext();
@@ -363,9 +312,6 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
                 });
 //        userDB.child("emojis").child(emoji.getKey()).setValue(emoji);
         userDB.child("FUser").child(userNameUserIdPair.get(selectedUsername)).get().addOnCompleteListener((task) -> {
-//            HashMap tempMap = (HashMap) task.getResult().getValue();
-//            String token = tempMap.get("token").toString();
-//            new Thread(() -> sendEmojiNotification(token, emoji)).start();
         });
         Toast.makeText(getApplicationContext(), "Send successfully", Toast.LENGTH_SHORT).show();
     }
@@ -557,12 +503,6 @@ public class FSendEmoji extends AppCompatActivity implements LocationListener {
         userDB.child("FUser").child(userName).child("location").child("city").setValue(city);
         userDB.child("FUser").child(userName).child("city").setValue(city);
     }
-
-//    private double distance(double laSender, double loSender, double laReceiver, double loReceiver) {
-//        float[] results = new float[3];
-//        Location.distanceBetween(laSender, loSender,laReceiver,loReceiver, results);
-//        return results[0];
-//    }
 
 
     // get city name by la and lo

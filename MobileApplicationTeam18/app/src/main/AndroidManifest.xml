@@ -47,18 +47,6 @@
             android:name=".FSendEmoji"
             android:exported="false" />
         <activity
-            android:name=".FDailycalendar"
-            android:exported="false" />
-        <activity
-            android:name=".FCalendarWeekView"
-            android:exported="false" />
-        <activity
-            android:name=".FCalendarEventEdit"
-            android:exported="false" />
-        <activity
-            android:name=".FCalendar"
-            android:exported="false" />
-        <activity
             android:name=".FMemoryimage"
             android:exported="false" />
         <activity

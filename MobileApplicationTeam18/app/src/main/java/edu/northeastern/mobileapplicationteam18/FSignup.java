@@ -21,10 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class FSignup extends AppCompatActivity {
-
-    // create object of DatabaseRef class
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-//    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://team18-4d12d-default-rtdb.firebaseio.com/");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

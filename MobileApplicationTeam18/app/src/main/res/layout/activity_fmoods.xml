@@ -289,7 +289,6 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         app:itemBackground="@color/common_google_signin_btn_text_dark_default"
-        app:itemTextColor="#ffffff"
         app:menu="@menu/bottom_nav_menu"
         />
 

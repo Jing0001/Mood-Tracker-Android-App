@@ -98,11 +98,9 @@ public class FMoodSummary extends AppCompatActivity {
             }
         });
 
-
     }// end of on create
 
     // read mood counts from DB
-
     private void readCountFromDB() {
         databaseReference.child("FUser").child(userName).child("MoodCount").get().addOnCompleteListener((task) -> {
             HashMap<String, Long> countMap = (HashMap) task.getResult().getValue();
