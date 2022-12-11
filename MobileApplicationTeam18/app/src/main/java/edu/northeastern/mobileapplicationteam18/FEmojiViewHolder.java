@@ -29,17 +29,17 @@ public class FEmojiViewHolder extends RecyclerView.ViewHolder {
 
     private int getImageResourceById(int id) {
         if (id == 1) {
-            return R.drawable.hi;
+            return R.drawable.dance;
         } else if (id == 2) {
-            return R.drawable.bye;
+            return R.drawable.yoga;
         } else if (id == 3) {
-            return R.drawable.alright;
+            return R.drawable.shop;
         } else if (id == 4) {
-            return R.drawable.here;
+            return R.drawable.swim;
         } else if (id == 5) {
-            return R.drawable.call;
+            return R.drawable.read;
         } else if (id == 6) {
-            return R.drawable.haveaniceday;
+            return R.drawable.sun;
         }
         return -1;
     }
