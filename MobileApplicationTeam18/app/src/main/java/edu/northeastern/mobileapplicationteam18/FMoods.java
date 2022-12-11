@@ -1,6 +1,7 @@
 package edu.northeastern.mobileapplicationteam18;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
@@ -26,8 +27,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -63,7 +67,6 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         }
 
         // for navigation bar
-//        BottomNavigationView bottomNavigationView=(BottomNavigationView) findViewById(R.id.navigationBar);
         bottomNavigationView=(BottomNavigationView) findViewById(R.id.navigationBar);
         bottomNavigationView.setSelectedItemId(R.id.home);
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
@@ -118,10 +121,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Happy");
-                System.out.println("happy count: " + readCountFromDB("Happy"));
-                System.out.println("happy count type:" +  readCountFromDB("Happy").getClass());
-                Integer cnt = readCountFromDB("Happy") + 1 ;
-                postToDatabase("Happy", cnt);
+                updateCountFromDB("Happy");
                 Intent intent = new Intent(FMoods.this, FM0happy.class);
                 intent.putExtra("user_name", userName);
                 startActivity(intent);
@@ -134,8 +134,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Angry");
-                Integer cnt = readCountFromDB("Angry") + 1 ;
-                postToDatabase("Angry", cnt);
+                updateCountFromDB("Angry");
                 Intent intent = new Intent(FMoods.this, FM1Angry.class);
                 intent.putExtra("user_name", userName);
                 startActivity(intent);
@@ -147,8 +146,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Sad");
-                Integer cnt = readCountFromDB("Sad") + 1 ;
-                postToDatabase("Sad", cnt);
+                updateCountFromDB("Sad");
                 Intent intent = new Intent(FMoods.this, FM2Sad.class);
                 intent.putExtra("user_name", userName);
                 startActivity(intent);
@@ -160,8 +158,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Hysterical");
-                Integer cnt = readCountFromDB("Hysterical") + 1 ;
-                postToDatabase("Hysterical", cnt);
+                updateCountFromDB("Hysterical");
                 Intent intent = new Intent(FMoods.this, FM3Hysterical.class);
                 intent.putExtra("user_name", userName);
                 startActivity(intent);
@@ -173,8 +170,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Embarrassment");
-                Integer cnt = readCountFromDB("Embarrassment") + 1 ;
-                postToDatabase("Embarrassment", cnt);
+                updateCountFromDB("Embarrassment");
                 Intent intent = new Intent(FMoods.this, FM4Embarrassed.class);
                 intent.putExtra("user_name", userName);
                 startActivity(intent);
@@ -186,10 +182,7 @@ public class FMoods extends AppCompatActivity implements LocationListener {
             @Override
             public void onClick(View view) {
                 databaseReference.child("FUser").child(userName).child("mood").setValue("Fatigued");
-                System.out.println("fatigue count：" + readCountFromDB("Fatigued"));
-                Integer cnt = readCountFromDB("Fatigued") + 1 ;
-                System.out.println("cnt after adding: " + cnt);
-                postToDatabase("Fatigued", cnt);
+                updateCountFromDB("Fatigued");
                 Intent intent = new Intent(FMoods.this, FM5Fatigued.class);
                 intent.putExtra("user_name", userName);
                 startActivity(intent);
@@ -266,32 +259,46 @@ public class FMoods extends AppCompatActivity implements LocationListener {
         return cityName;
     }
 
-    // read mood counts from DB
-    private Integer readCountFromDB(String mood) {
+    // update mood counts from DB
+    private void updateCountFromDB(String mood) {
         databaseReference.child("FUser").child(userName).child("MoodCount").get().addOnCompleteListener((task) -> {
-            HashMap<String, Long> countMap = (HashMap) task.getResult().getValue();
-            System.out.println("Wen test: Angry: " + countMap.get("Angry"));
-            System.out.println("Wen test: Embarrassed: " + countMap.get("Embarrassment"));
-            System.out.println("Wen test: Fatigued: " + countMap.get("Fatigued"));
-            System.out.println("Wen test: Happy: " + countMap.get("Happy"));
-            System.out.println("Wen test: Hysterical: " + countMap.get("Hysterical"));
-            System.out.println("Wen test: Sad: " + countMap.get("Sad"));
-            cntMood = Math.toIntExact(countMap.get(mood));
-            System.out.println("cntMood: " + cntMood);
-//            if (countMap != null && countMap.containsKey(mood)) {
-//            if(countMap != null){
-//             cntMood = Math.toIntExact(countMap.get(mood));
-//            } else {
-//                cntMood = 0;
-
+            System.out.println("Start read data from DB....");
+            HashMap<String, Long> localCountMap = (HashMap<String, Long>) task.getResult().getValue();
+            System.out.println("Wen test: Angry: " + localCountMap.getOrDefault("Angry", 0L));
+            System.out.println("Wen test: Embarrassed: " + localCountMap.getOrDefault("Embarrassment", 0L));
+            System.out.println("Wen test: Fatigued: " + localCountMap.getOrDefault("Fatigued", 0L));
+            System.out.println("Wen test: Happy: " + localCountMap.getOrDefault("Happy", 0L));
+            System.out.println("Wen test: Hysterical: " + localCountMap.getOrDefault("Hysterical", 0L));
+            System.out.println("Wen test: Sad: " + localCountMap.getOrDefault("Sad", 0L));
+            System.out.println("cntMood: " + Math.toIntExact(localCountMap.get(mood)));
+            Integer cnt = Math.toIntExact(localCountMap.get(mood));
+            // countMap = (HashMap) task.getResult().getValue();
+            System.out.println("Update count....");
+            databaseReference.child("FUser").child(userName).child("MoodCount").child(mood).setValue(cnt + 1);
         });
-        return cntMood;
     }
 
     // write mood count to DB
-    public void postToDatabase(String mood, Integer cnt) {
-        databaseReference.child("FUser").child(userName).child("MoodCount").child(mood).setValue(cnt);
-    }
+//    public void postToDatabase(String mood, Integer cnt) {
+//        // databaseReference.child("FUser").child(userName).child("MoodCount").child(mood).setValue(cnt);
+//        DatabaseReference dataRef = databaseReference.child("FUser").child(userName).child("MoodCount").child(mood);
+//        dataRef.setValue(cnt, new DatabaseReference.CompletionListener() {
+//            @Override
+//            public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+//                if (databaseError != null) {
+//                    System.out.println("Data could not be saved " + databaseError.getMessage());
+//                } else {
+//                    System.out.println("Data saved successfully.");
+//                }
+//            }
+//        });
+//    }
+
+//    public interface OnGetDataListener {
+//        void onSuccess(DataSnapshot dataSnapshot);
+////        void onStart();
+////        void onFailure();
+//    }
 }
 
 
