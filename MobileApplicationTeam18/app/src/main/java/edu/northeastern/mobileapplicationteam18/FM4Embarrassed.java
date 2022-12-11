@@ -28,10 +28,7 @@ public class FM4Embarrassed extends AppCompatActivity {
         userInEmbarrassedTV = (TextView) findViewById(R.id.userInEmbarrassed);
         userInEmbarrassedTV.setText(userName);
         Button shareMood = (Button) findViewById(R.id.shareMood);
-
-
         Button getlist4 = (Button) findViewById(R.id.list4);
-//        Button addlist4 = (Button) findViewById(R.id.addlist4);
         getlist4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,13 +37,6 @@ public class FM4Embarrassed extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        addlist4.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(FM4Embarrassed.this, FUpload4.class);
-//                startActivity(intent);
-//            }
-//        });
 
         shareMood.setOnClickListener(new View.OnClickListener() {
             @Override

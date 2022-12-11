@@ -189,19 +189,7 @@ public class FMemory extends AppCompatActivity {
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
                             Toast.makeText(FMemory.this, "Upload successful", Toast.LENGTH_LONG).show();
-//                            FActivity upload = new FActivity(nameEditText.getText().toString().trim(),
-//                                    taskSnapshot.getMetadata().getReference().getDownloadUrl().toString(),
-//                                    descriptionEditText.getText().toString());
-//
-//                            String uploadId = mDatabaseRef.push().getKey();
-//                            EditText username = (EditText) findViewById(R.id.username);
-//                            String nameTxt = username.getText().toString();
-//                            databaseReference.child("FUser").child(nameTxt).child(uploadId).setValue(upload);
-//                            mDatabaseRef.child(uploadId).setValue(upload);
-
                             uploadProgressBar.setVisibility(View.INVISIBLE);
-//                            openImagesActivity();
-
                         }
                     })
                     .addOnFailureListener(new OnFailureListener () {
@@ -224,6 +212,7 @@ public class FMemory extends AppCompatActivity {
     }
     private void openImagesActivity(){
         Intent intent = new Intent(this, FMemoryimage.class);
+        intent.putExtra("user_name", userName);
         startActivity(intent);
     }
 }

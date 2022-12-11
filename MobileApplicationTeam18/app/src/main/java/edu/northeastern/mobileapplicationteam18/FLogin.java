@@ -40,7 +40,6 @@ public class FLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String nameTxt = username.getText().toString();
-//                String emailTxt = email.getText().toString();
                 final String passwordTxt = password.getText().toString();
                 if(nameTxt.isEmpty() || passwordTxt.isEmpty()){
                     // Incorrect
@@ -77,19 +76,6 @@ public class FLogin extends AppCompatActivity {
                     });
                 }
         }});
-
-
-
-//        regbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                // open Register activity
-//                startActivity(new Intent(FLogin.this, FSignup.class));
-//            }
-//        });
-
-
     }
 
     @Override

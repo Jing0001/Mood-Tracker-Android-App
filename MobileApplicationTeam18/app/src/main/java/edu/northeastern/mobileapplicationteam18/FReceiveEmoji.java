@@ -32,7 +32,6 @@ public class FReceiveEmoji extends AppCompatActivity {
         setContentView(R.layout.activity_freceive_emoji);
 
         Bundle extras = getIntent().getExtras();
-        System.out.println("extras in received: " + extras);
         if (extras != null) {
             userName = extras.getString("user_name");
         }
@@ -42,7 +41,7 @@ public class FReceiveEmoji extends AppCompatActivity {
 
         // for navigation bar
         bottomNavigationView=(BottomNavigationView) findViewById(R.id.navigationBar);
-        bottomNavigationView.setSelectedItemId(R.id.messaging);
+        bottomNavigationView.setSelectedItemId(R.id.home);
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -50,32 +49,31 @@ public class FReceiveEmoji extends AppCompatActivity {
                 switch(item.getItemId())
                 {
                     case R.id.messaging:
-                        return true;
-
-                    case R.id.home:
-                        Intent intent = new Intent(getApplicationContext(),FMoods.class);
-                        intent.putExtra("user_name", userName);
+                        Intent intent = new Intent(getApplicationContext(),FSendEmoji.class);
+                        intent.putExtra("user_name",myName);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
 
+                    case R.id.home:
+                        return true;
+
                     case R.id.tracking:
                         Intent intentTracking = new Intent(getApplicationContext(),FMoodSummary.class);
-                        intentTracking.putExtra("user_name", userName);
+                        intentTracking.putExtra("user_name", myName);
                         startActivity(intentTracking);
                         overridePendingTransition(0,0);
                         return true;
-
                     case R.id.moment:
                         Intent intentMoment = new Intent(getApplicationContext(),FMemory.class);
-                        intentMoment.putExtra("user_name", userName);
+                        intentMoment.putExtra("user_name", myName);
                         startActivity(intentMoment);
                         overridePendingTransition(0,0);
                         return true;
                 }
                 return false;
             }
-        }); //end of navigation bar
+        });
     }
 
     private void updateReceivedRecordsRV() {

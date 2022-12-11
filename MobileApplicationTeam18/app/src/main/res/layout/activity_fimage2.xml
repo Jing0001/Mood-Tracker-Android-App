@@ -25,14 +25,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/white" />
 
-    <!--    <ProgressBar-->
-    <!--        android:id="@+id/myDataLoaderProgressBar"-->
-    <!--        style="?android:attr/progressBarStyleHorizontal"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:indeterminate="true"-->
-    <!--        android:indeterminateBehavior="cycle"-->
-    <!--        android:visibility="gone" />-->
     <ProgressBar
         android:id="@+id/progress_circle2"
         android:layout_width="wrap_content"
@@ -78,7 +70,6 @@ android:layout_height="wrap_content"
 android:layout_alignParentBottom="true"
 android:layout_gravity="bottom"
 app:itemBackground="@color/common_google_signin_btn_text_dark_default"
-app:itemTextColor="#ffffff"
 app:menu="@menu/bottom_nav_menu"
     />
 

@@ -40,13 +40,6 @@ public class FM2Sad extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        addlist2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(FM2Sad.this, FUpload2.class);
-//                startActivity(intent);
-//            }
-//        });
 
         shareMood.setOnClickListener(new View.OnClickListener() {
             @Override

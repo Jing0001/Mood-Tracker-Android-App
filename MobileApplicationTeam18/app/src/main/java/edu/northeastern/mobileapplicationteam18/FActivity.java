@@ -11,9 +11,6 @@ public class FActivity {
     private String description;
     private int position;
 
-
-
-
     public FActivity() {
         //empty constructor needed
     }
