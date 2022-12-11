@@ -22,9 +22,9 @@ import java.util.Objects;
 
 public class FReceiveEmoji extends AppCompatActivity {
     private List<Emoji> Emojis;
-    private String myName;
     private DatabaseReference myDataBase;
     BottomNavigationView bottomNavigationView;
+    private String userName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,8 +33,7 @@ public class FReceiveEmoji extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            myName = extras.getString("user_name");
-            System.out.println("my name in extras received :" + myName);  // null ????????
+            userName = extras.getString("user_name");
         }
         myDataBase = FirebaseDatabase.getInstance().getReference();
         updateReceivedRecordsRV();
@@ -97,9 +96,9 @@ public class FReceiveEmoji extends AppCompatActivity {
                 String sendTime = Objects.requireNonNull(tempMap.get(entryKey)).get("sendTime");
                 String toUser = Objects.requireNonNull(tempMap.get(entryKey)).get("toUser");
                 System.out.println("to user in received before__: " + toUser);
-                System.out.println("myName in received: " + myName);
+                System.out.println("myName in received: " + userName);
 
-                if (toUser != null && toUser.equals(myName)) {
+                if (toUser != null && toUser.equals(userName)) {
                     System.out.println("to user in if__: " + toUser);
                     Emojis.add(new Emoji(Integer.parseInt(id), fromUser, toUser, sendTime));
                 }
