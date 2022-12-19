@@ -1,7 +1,7 @@
 # CS5520-Team18
 ## Jing Feng, Lujie Wen, Suisui Xia, Shuyi Wang
 ### Moody Mood Tracker: a journal and tasks suggestion app. 
-
+（https://youtu.be/e6WWBgFXogc）
 - [x] Moody can record and track user’s daily mood and give out activity suggestions
 - [x] Users can create and add the recommended activities within the tag
 - [x] Users can share their precious moments with texts and photos to all users
